@@ -1,21 +1,21 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\PageListWidget\Block\Widget;
 
+use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
-//use Magento\Tests\NamingConvention\true\string;
 use Magento\Widget\Block\BlockInterface;
 
 class PageList extends Template implements BlockInterface
 {
 
     /**
-     * construct description
-     * @param MagentoFrameworkViewElementTemplateContext $context
+     * @param Template\Context $context
      * @param \Magento\Cms\Api\PageRepositoryInterface $pageRepository
      * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
-     * $data[]
+     * @param array $data
      */
     public function __construct(
         \Magento\Framework\View\Element\Template\Context $context,
@@ -40,7 +40,7 @@ class PageList extends Template implements BlockInterface
      * Get title function
      * @return string
      */
-    public function getTitle()
+    public function getTitle():string
     {
         return $this->getData('title');
     }
@@ -50,7 +50,7 @@ class PageList extends Template implements BlockInterface
      * @see \Magebit\PageListWidget\Block\Widget\PageList::getPagesList()
      * @return string
      */
-    public function getSelectedPages()
+    public function getSelectedPages():string
     {
         $newPagesArray = [];
         if ($this->getData("display_mode") == "all") {
@@ -77,7 +77,7 @@ class PageList extends Template implements BlockInterface
      * @return array
      * @throws LocalizedException
      */
-    private function getPagesList()
+    private function getPagesList():array
     {
         $pages = [];
         foreach ($this->_cmsPage->getList($this->_getSearchCriteria())->getItems() as $page) {
@@ -89,7 +89,7 @@ class PageList extends Template implements BlockInterface
     /**
      * @return \Magento\Framework\Api\SearchCriteria
      */
-    private function _getSearchCriteria()
+    private function _getSearchCriteria():SearchCriteria
     {
         return $this->_search->addFilter('is_active', '1')->create();
     }

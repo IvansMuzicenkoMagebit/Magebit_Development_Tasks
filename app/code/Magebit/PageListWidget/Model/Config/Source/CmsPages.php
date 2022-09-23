@@ -1,5 +1,5 @@
 <?php
-
+declare(strict_types = 1);
 namespace Magebit\PageListWidget\Model\Config\Source;
 
 use Magento\Cms\Api\Data\PageInterface;
@@ -43,7 +43,7 @@ class CmsPages implements OptionSourceInterface
      * Get all pages option array function
      * @return array
      */
-    public function toOptionArray()
+    public function toOptionArray():array
     {
         $optionArray = [];
         try {
@@ -68,7 +68,7 @@ class CmsPages implements OptionSourceInterface
      * Get all pages array function
      * @return \Exception|PageInterface[]|LocalizedException
      */
-    public function getCmsPageCollection()
+    public function getCmsPageCollection():LocalizedException
     {
         $searchCriteria = $searchCriteria = $this->searchCriteriaBuilder->create();
         try {
