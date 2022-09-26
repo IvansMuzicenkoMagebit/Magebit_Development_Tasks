@@ -46,9 +46,24 @@ class PageList extends Template implements BlockInterface
     }
 
     /**
-     * Get all selected pages formatted array function
-     * @see \Magebit\PageListWidget\Block\Widget\PageList::getPagesList()
+     * Get all pages array function
      * @return array
+     * @throws LocalizedException
+     */
+    private function getPagesList():array
+    {
+        $pages = [];
+        foreach ($this->_cmsPage->getList($this->_getSearchCriteria())->getItems() as $page) {
+            $pages[$page->getIdentifier()] = $page->getTitle();
+        }
+        return $pages;
+    }
+
+    /**
+     * Get all selected pages formatted array function
+     * @return array
+     * @throws LocalizedException
+     * @see \Magebit\PageListWidget\Block\Widget\PageList::getPagesList()
      */
     public function getSelectedPages():array
     {
@@ -64,20 +79,6 @@ class PageList extends Template implements BlockInterface
         }
 
         return $newPagesArray;
-    }
-
-    /**
-     * Get all pages array function
-     * @return array
-     * @throws LocalizedException
-     */
-    private function getPagesList():array
-    {
-        $pages = [];
-        foreach ($this->_cmsPage->getList($this->_getSearchCriteria())->getItems() as $page) {
-            $pages[$page->getIdentifier()] = $page->getTitle();
-        }
-        return $pages;
     }
 
     /**
