@@ -20,6 +20,9 @@ class CmsPages implements OptionSourceInterface
      */
     private $pageRepositoryInterface;
 
+    /**
+     * @var LoggerInterface
+     */
     private $logger;
 
     /**
