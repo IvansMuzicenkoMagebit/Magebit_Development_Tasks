@@ -46,11 +46,11 @@ class PageList extends Template implements BlockInterface
     }
 
     /**
-     * Get all selected pages HTML string function
+     * Get all selected pages formatted array function
      * @see \Magebit\PageListWidget\Block\Widget\PageList::getPagesList()
-     * @return string
+     * @return array
      */
-    public function getSelectedPages():string
+    public function getSelectedPages():array
     {
         $newPagesArray = [];
         if ($this->getData("display_mode") == "all") {
@@ -63,13 +63,7 @@ class PageList extends Template implements BlockInterface
             }
         }
 
-        // Convert pages array to HTML string
-        $pagesHtml = "";
-        foreach ($newPagesArray as $url => $title) {
-            $pagesHtml .= "<li><a href='" . $url . "'>" . $title . "</a></li>";
-        }
-
-        return $pagesHtml;
+        return $newPagesArray;
     }
 
     /**

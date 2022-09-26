@@ -7,6 +7,18 @@ use Magebit\PageListWidget\Block\Widget\PageList;
 <!--Selected pages display block-->
 <div>
     <h3><?= $block->getTitle() ?></h3>
-    <ul><?= $block->getSelectedPages() ?></ul>
+    <ul>
+        <?php
+        $pagesHtml = "";
+        $pagesArray = $block->getSelectedPages();
+
+        foreach ($pagesArray as $url => $title) {
+            $pagesHtml .= "<li><a href='" . $url . "'>" . $title . "</a></li>";
+        }
+
+        echo $pagesHtml;
+        ?>
+    </ul>
 </div>
+
 

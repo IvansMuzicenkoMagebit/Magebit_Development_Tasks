@@ -5,7 +5,6 @@ namespace Magebit\PageListWidget\Model\Config\Source;
 use Magento\Cms\Api\Data\PageInterface;
 use Magento\Cms\Api\PageRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
-use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Data\OptionSourceInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Psr\Log\LoggerInterface;
@@ -21,6 +20,8 @@ class CmsPages implements OptionSourceInterface
      */
     private $pageRepositoryInterface;
 
+    private $logger;
+
     /**
      * @var SearchCriteriaBuilder
      */
@@ -30,13 +31,16 @@ class CmsPages implements OptionSourceInterface
      * CmsPages constructor.
      * @param PageRepositoryInterface $pageRepositoryInterface
      * @param SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param LoggerInterface $logger
      */
     public function __construct(
         PageRepositoryInterface $pageRepositoryInterface,
-        SearchCriteriaBuilder $searchCriteriaBuilder
+        SearchCriteriaBuilder $searchCriteriaBuilder,
+        LoggerInterface $logger
     ) {
         $this->pageRepositoryInterface = $pageRepositoryInterface;
         $this->searchCriteriaBuilder = $searchCriteriaBuilder;
+        $this->logger = $logger;
     }
 
     /**
@@ -47,19 +51,16 @@ class CmsPages implements OptionSourceInterface
     {
         $optionArray = [];
         try {
-            $pages = $this->getCmsPageCollection();
-            if ($pages instanceof LocalizedException) {
-                throw $pages;
-            }
-            $cnt = 0;
+            $pages = $this->getCmsPages();
+
             foreach ($pages as $page) {
-                $optionArray[$cnt]['value'] = $page->getIdentifier();
-                $optionArray[$cnt++]['label'] = $page->getTitle();
+                $data = [];
+                $data['value'] = $page->getIdentifier();
+                $data['label'] = $page->getTitle();
+                $optionArray[] = $data;
             }
-        } catch (LocalizedException $e) {
-            ObjectManager::getInstance()->get(LoggerInterface::class)->info($e->getMessage());
         } catch (\Exception $e) {
-            ObjectManager::getInstance()->get(LoggerInterface::class)->info($e->getMessage());
+            $this->logger->critical('Error message', ['exception' => $e]);
         }
         return $optionArray;
     }
@@ -68,14 +69,14 @@ class CmsPages implements OptionSourceInterface
      * Get all pages array function
      * @return \Exception|PageInterface[]|LocalizedException
      */
-    public function getCmsPageCollection():LocalizedException
+    public function getCmsPages():LocalizedException
     {
         $searchCriteria = $searchCriteria = $this->searchCriteriaBuilder->create();
         try {
-            $collection = $this->pageRepositoryInterface->getList($searchCriteria)->getItems();
+            $cmsPagesList = $this->pageRepositoryInterface->getList($searchCriteria)->getItems();
         } catch (LocalizedException $e) {
             return $e;
         }
-        return $collection;
+        return $cmsPagesList;
     }
 }
