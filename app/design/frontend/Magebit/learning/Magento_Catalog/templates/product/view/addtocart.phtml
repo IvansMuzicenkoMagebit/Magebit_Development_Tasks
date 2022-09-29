@@ -15,7 +15,7 @@
                 <div class="field qty">
                     <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
                     <div class="control">
-                        <button class="product-qty-decr" type="button">-</button>
+                        <button class="product-qty-decr" type="button" onclick="this.nextElementSibling.value -= 1">-</button>
                         <input type="number"
                                name="qty"
                                id="qty"
@@ -25,11 +25,12 @@
                                class="input-text qty"
                                data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
                         />
-                        <button class="product-qty-incr" type="button">+</button>
+                        <button class="product-qty-incr" type="button" onclick="this.previousElementSibling.value -= -1">+</button>
                         <?php
                         $productAvail = $block->getProduct()->getQuantityAndStockStatus();
                         if ($productAvail["is_in_stock"] == 1) {
-                            echo "<p class='product-stock-status'><img src='./../../web/images/instock.svg' width='11px' height='8px'/><b>IN STOCK</b>" . " " . $productAvail["qty"] . " items available</p>";
+                            $imageSrc = "src='" . $block->getViewFileUrl('Magento_Catalog::images/instock.svg') . "'";
+                            echo "<p class='product-stock-status'><img ". $imageSrc . "id='product-instock-image' width='11px' height='8px'/><b>IN STOCK</b>" . " " . $productAvail["qty"] . " items available</p>";
                         } else {
                             echo "<p class='product-stock-status'><b>OUT OF STOCK</b></p>";
                         }

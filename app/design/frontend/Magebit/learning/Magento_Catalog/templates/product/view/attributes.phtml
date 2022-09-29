@@ -47,7 +47,10 @@ $_product = $block->getProduct();
         </ul>
         <?php
         $description = $_product->getDescription();
-        $smallDesc = explode(".", $description)[0];
+        $smallDesc = "";
+        if ($description) {
+            $smallDesc = explode(".", $description)[0];
+        }
         echo $smallDesc;
 
         ?>

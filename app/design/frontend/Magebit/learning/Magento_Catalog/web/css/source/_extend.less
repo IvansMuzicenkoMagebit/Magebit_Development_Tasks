@@ -167,5 +167,52 @@
     .product-social-links {
         display: none;
     }
+
+    .block.upsell {
+        .product-items {
+            display: flex;
+            flex-direction: column;
+
+            .product-item {
+                width: 100%;
+                height: 110px !important;
+                max-height: 110px;
+
+                * {
+                    max-height: 110px !important;
+                    padding: 0;
+                    margin: 0;
+                }
+
+                .product-item-info {
+                    width: 100%;
+                    display: flex;
+                    gap: 20px;
+
+                    .product-image-wrapper {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .upsell-view-btn {
+                        margin-left: auto;
+                        background: #333333;
+                        height: 32px;
+                        width: 109px;
+                        display: flex;
+                        align-self: center;
+                        align-items: center;
+                        justify-content: center;
+                        color: white;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.related-hidden {
+    visibility: hidden;
 }
 
