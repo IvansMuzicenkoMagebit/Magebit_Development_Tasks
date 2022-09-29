@@ -1,0 +1,55 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate.FoundThis
+
+/**
+ * Product additional attributes template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\Attributes
+ */
+?>
+<?php
+$_helper = $this->helper(Magento\Catalog\Helper\Output::class);
+$_product = $block->getProduct();
+
+?>
+<?php if ($_additional = $block->getAdditionalData()) :?>
+    <div class="additional-attributes-wrapper custom-attributes-wrapper">
+        <ul>
+            <?php
+            $newAttrArray = [];
+            $unlistedAttrs = [];
+            foreach ($_additional as $_data) {
+                if ($_data["code"] == "color" || $_data["code"] == "material" || $_data["code"] == "size") {
+                    $newAttrArray[] = $_data;
+                } else {
+                    $unlistedAttrs[] = $_data;
+                }
+            }
+            foreach ($unlistedAttrs as $attr) {
+                if (count($newAttrArray) >= 3) break;
+                $newAttrArray[] = $attr;
+            }
+            foreach ($newAttrArray as $_data) {
+                $attrItem = "<li>";
+                $attrItem .= "<b>" . $block->escapeHtml($_data['label']) . "</b>: " . $_data['value'];
+
+                echo $attrItem . "</li>";
+            }
+
+
+            ?>
+
+        </ul>
+        <?php
+        $description = $_product->getDescription();
+        $smallDesc = explode(".", $description)[0];
+        echo $smallDesc;
+
+        ?>
+    </div>
+<?php endif;?>
