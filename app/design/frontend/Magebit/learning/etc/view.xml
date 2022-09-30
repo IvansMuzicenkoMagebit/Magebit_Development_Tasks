@@ -26,6 +26,10 @@
                 <width>88</width>
                 <height>110</height>
             </image>
+            <image id="related_products_list" type="small_image">
+                <width>224</width>
+                <height>280</height>
+            </image>
 
         </images>
     </media>

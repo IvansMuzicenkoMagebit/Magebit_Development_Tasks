@@ -96,62 +96,6 @@ switch ($type = $block->getType()) {
         }
         break;
 
-    case 'crosssell-rule':
-        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
-        if ($exist = $block->hasItems()) {
-            $type = 'crosssell';
-            $class = $type;
-
-            $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
-            $items = $block->getItemCollection();
-
-            $showAddTo = true;
-            $showCart = true;
-            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
-            $description = false;
-            $canItemsAddToCart = true;
-        }
-        break;
-
-    case 'crosssell':
-        /** @var \Magento\Catalog\Block\Product\ProductList\Crosssell $block */
-        if ($exist = count($block->getItems())) {
-            $type = 'crosssell';
-            $class = $type;
-
-            $image = 'cart_cross_sell_products';
-            $title = __('More Choices:');
-            $items = $block->getItems();
-
-            $showAddTo = true;
-            $showCart = true;
-            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
-            $description = false;
-            $canItemsAddToCart = true;
-        }
-        break;
-
-    case 'new':
-        if ($exist = $block->getProductCollection()) {
-            $type = 'new';
-            $mode = 'grid';
-            $type = $type . ' ' . $mode;
-
-            $class = 'widget' . ' ' . $type;
-
-            $image = 'new_products_content_widget_grid';
-            $title = __('New Products');
-            $items = $exist;
-
-            $showAddTo = true;
-            $showCart = true;
-            $templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
-            $description = ($mode == 'list') ? true : false;
-            $canItemsAddToCart = false;
-        }
-        break;
-
     default:
         $exist = null;
 }
@@ -180,15 +124,9 @@ $_item = null;
             <div class="block-title title">
                 <strong id="block-<?= $block->escapeHtmlAttr($class) ?>-heading" role="heading"
                         aria-level="2"><?= $block->escapeHtml($title) ?></strong>
+                <div class="upsell-hr"></div>
             </div>
             <div class="block-content content" aria-labelledby="block-<?= $block->escapeHtmlAttr($class) ?>-heading">
-                <?php if ($type == 'related' && $canItemsAddToCart):?>
-                    <div class="block-actions">
-                        <?= $block->escapeHtml(__('Check items to add to the cart or')) ?>
-                        <button type="button" class="action select"
-                                data-role="select-all"><span><?= $block->escapeHtml(__('select all')) ?></span></button>
-                    </div>
-                <?php endif; ?>
                 <div class="products wrapper grid products-grid products-<?= $block->escapeHtmlAttr($type) ?>">
                     <ol class="products list items product-items">
                         <?php foreach ($items as $_item):?>

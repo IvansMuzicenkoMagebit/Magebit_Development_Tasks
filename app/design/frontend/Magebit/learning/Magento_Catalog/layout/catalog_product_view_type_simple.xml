@@ -7,21 +7,18 @@
 
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <move element="product.info.media" destination="content" before="-"/>
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
         <move element="product.info.sku" destination="product.info.price" after="product.price.final"/>
         <move element="product.info.review" destination="product.info.main" before="product.info.price"/>
         <move element="product.info.upsell" destination="product.info.main" after="-"/>
+        <move element="content.aside" destination="columns" after="content"/>
+        <move element="reviews.tab" destination="columns" after="-"/>
         <move element="product.attributes" destination="product.info.main"  after="product.info.price"/>
+
         <referenceBlock name="product.info.description" remove="true"/>
         <referenceBlock name="product.info.stock.sku" remove="true"/>
-        <referenceBlock name="reviews.tab" remove="true"/>
-
-
-
-        <move element="stock.available" destination="box.tocart" after="input.text"/>
-
-
 
     </body>
 </page>
