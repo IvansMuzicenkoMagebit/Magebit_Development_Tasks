@@ -14,18 +14,25 @@
             <?php if ($block->shouldRenderQuantity()) :?>
                 <div class="field qty">
                     <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
-                    <div class="control">
-                        <button class="product-qty-decr" type="button" onclick="this.nextElementSibling.value -= 1">-</button>
-                        <input type="number"
-                               name="qty"
-                               id="qty"
-                               min="0"
-                               value="<?= $block->getProductDefaultQty() * 1 ?>"
-                               title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
-                               class="input-text qty"
-                               data-validate="<?= $block->escapeHtml(json_encode($block->getQuantityValidators())) ?>"
-                        />
-                        <button class="product-qty-incr" type="button" onclick="this.previousElementSibling.value -= -1">+</button>
+                    <div id="custom-qty" class="control" data-bind="scope: 'qty-counter'">
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <script type="text/x-magento-init">
+                            {
+                                "#custom-qty": {
+                                    "Magento_Ui/js/core/app": {
+                                        "components": {
+                                            "qty-counter": {
+                                                "component": "qty-counter",
+                                                "config": {
+                                                    "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
+                                                    "dataValidate": <?php echo json_encode($block->getQuantityValidators()) ?>
+                                                }
+                                            }
+                                         }
+                                    }
+                                }
+                            }
+                        </script>
                         <?php
                         $productAvail = $block->getProduct()->getQuantityAndStockStatus();
                         if ($productAvail["is_in_stock"] == 1) {
@@ -35,7 +42,6 @@
                             echo "<p class='product-stock-status'><b>OUT OF STOCK</b></p>";
                         }
                         ?>
-
                     </div>
                 </div>
             <?php endif; ?>
