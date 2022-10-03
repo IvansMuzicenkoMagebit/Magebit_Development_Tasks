@@ -16,23 +16,6 @@
                     <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
                     <div id="custom-qty" class="control" data-bind="scope: 'qty-counter'">
                         <!-- ko template: getTemplate() --><!-- /ko -->
-                        <script type="text/x-magento-init">
-                            {
-                                "#custom-qty": {
-                                    "Magento_Ui/js/core/app": {
-                                        "components": {
-                                            "qty-counter": {
-                                                "component": "qty-counter",
-                                                "config": {
-                                                    "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
-                                                    "dataValidate": <?php echo json_encode($block->getQuantityValidators()) ?>
-                                                }
-                                            }
-                                         }
-                                    }
-                                }
-                            }
-                        </script>
                         <?php
                         $productAvail = $block->getProduct()->getQuantityAndStockStatus();
                         if ($productAvail["is_in_stock"] == 1) {
@@ -61,6 +44,19 @@
     {
         "#product_addtocart_form": {
             "Magento_Catalog/js/validate-product": {}
-        }
+        },
+        "#custom-qty": {
+                            "Magento_Ui/js/core/app": {
+                                "components": {
+                                    "qty-counter": {
+                                        "component": "qty-counter",
+                                        "config": {
+                                            "qty": <?php echo $block->getProductDefaultQty() * 1 ?>,
+                                            "dataValidate": <?php echo json_encode($block->getQuantityValidators()) ?>
+                                        }
+                                    }
+                                 }
+                            }
+                        }
     }
 </script>
