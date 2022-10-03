@@ -9,10 +9,13 @@
     <media>
         <images module="Magento_Catalog">
 
-            <image id="product_page_image_large" type="image"/>
-            <image id="product_page_image_medium" type="image">
+            <image id="product_page_image_large" type="image">
                 <width>640</width>
                 <height>640</height>
+            </image>
+            <image id="product_page_image_medium" type="image">
+                <width>366</width>
+                <height>366</height>
             </image>
             <image id="product-instock-image" type="image">
                 <width>11</width>
