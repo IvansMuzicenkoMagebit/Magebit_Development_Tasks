@@ -7,16 +7,28 @@ define([
             template: 'Magento_Catalog/input-counter'
         },
 
+        /**
+         * Observable quantity paramater initialization
+         * @return Object
+         */
         initObservable: function () {
             this._super().observe('qty');
 
             return this;
         },
 
+        /**
+         * Data validation function
+         * @return JSON string
+         */
         getDataValidator: function() {
             return JSON.stringify(this.dataValidate);
         },
 
+        /**
+         * Quantity decrease function
+         * @return void
+         */
         decreaseQty: function() {
             let qty;
 
@@ -25,6 +37,10 @@ define([
             this.qty(qty);
         },
 
+        /**
+         * Quantity increase function
+         * @return void
+         */
         increaseQty: function() {
             let qty = this.qty() + 1;
 

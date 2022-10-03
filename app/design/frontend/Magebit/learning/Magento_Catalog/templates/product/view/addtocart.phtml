@@ -15,9 +15,12 @@
                 <div class="field qty">
                     <label class="label" for="qty"><span><?= $block->escapeHtml(__('Qty')) ?></span></label>
                     <div id="custom-qty" class="control" data-bind="scope: 'qty-counter'">
+                        <!-- Displaying custom quantity block with decrease/increase buttons -->
                         <!-- ko template: getTemplate() --><!-- /ko -->
                         <?php
                         $productAvail = $block->getProduct()->getQuantityAndStockStatus();
+
+                        // Product stock info display
                         if ($productAvail["is_in_stock"] == 1) {
                             $imageSrc = "src='" . $block->getViewFileUrl('Magento_Catalog::images/instock.svg') . "'";
                             echo "<p class='product-stock-status'><img ". $imageSrc . "id='product-instock-image' width='11px' height='8px'/><b>IN STOCK</b>" . " " . $productAvail["qty"] . " items available</p>";

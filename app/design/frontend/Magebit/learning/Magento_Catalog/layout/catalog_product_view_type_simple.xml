@@ -7,6 +7,7 @@
 
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+        <!-- Layout blocks moving in needed place -->
         <move element="product.info.media" destination="content" before="-"/>
         <move element="page.main.title" destination="product.info.main" before="-"/>
         <move element="product.info.stock.sku" destination="product.info.price" after="product.price.final"/>
@@ -17,6 +18,7 @@
         <move element="reviews.tab" destination="columns" after="-"/>
         <move element="product.attributes" destination="product.info.main"  after="product.info.price"/>
 
+        <!-- Unused block remove -->
         <referenceBlock name="product.info.description" remove="true"/>
         <referenceBlock name="product.info.stock.sku" remove="true"/>
 

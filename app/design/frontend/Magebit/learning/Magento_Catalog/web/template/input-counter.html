@@ -1,3 +1,4 @@
+<!-- Decrease quantity counter button -->
 <button
     click="decreaseQty"
     class="product-qty-decr"
@@ -6,12 +7,16 @@
 >
     -
 </button>
+
+<!-- Quantity counter input -->
 <input data-bind="value: qty(), attr: {'data-validate': getDataValidator(), 'title': $t('Qty')}"
        type="number"
        name="qty"
        id="qty"
        maxlength="12"
        class="product-qty-input" />
+
+<!-- Increase quantity counter button -->
 <button
     click="increaseQty"
     class="product-qty-incr"
@@ -20,5 +25,4 @@
 >
     +
 </button>
-</span>
 

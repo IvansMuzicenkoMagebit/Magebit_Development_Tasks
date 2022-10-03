@@ -6,6 +6,7 @@
  */
 -->
 <view xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/view.xsd">
+    <!--  Media elements reconfiguration  -->
     <media>
         <images module="Magento_Catalog">
 
@@ -36,6 +37,8 @@
 
         </images>
     </media>
+
+    <!--  Module parts reconfiguration  -->
     <vars module="Magento_Catalog">
         <var name="gallery">
              <var name="navarrows">false</var> <!-- Turn on/off on the thumbs navigation sides arrows(true/false) -->

@@ -21,8 +21,11 @@ $_product = $block->getProduct();
     <div class="additional-attributes-wrapper custom-attributes-wrapper">
         <ul>
             <?php
+            // Product attributes display
             $newAttrArray = [];
             $unlistedAttrs = [];
+
+            // Adding main attributes if exists
             foreach ($_additional as $_data) {
                 if ($_data["code"] == "color" || $_data["code"] == "material" || $_data["code"] == "size") {
                     $newAttrArray[] = $_data;
@@ -30,22 +33,25 @@ $_product = $block->getProduct();
                     $unlistedAttrs[] = $_data;
                 }
             }
+
+            // Adding other attributes if needed to contain 3 attributes
             foreach ($unlistedAttrs as $attr) {
                 if (count($newAttrArray) >= 3) break;
                 $newAttrArray[] = $attr;
             }
+
+            // Display HTML list items of attributes
             foreach ($newAttrArray as $_data) {
                 $attrItem = "<li>";
                 $attrItem .= "<b>" . $block->escapeHtml($_data['label']) . "</b>: " . $_data['value'];
 
                 echo $attrItem . "</li>";
             }
-
-
             ?>
 
         </ul>
         <?php
+        // Product small description display
         $description = $_product->getDescription();
         $smallDesc = "";
         if ($description) {
