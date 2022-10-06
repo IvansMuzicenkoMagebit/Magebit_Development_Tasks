@@ -2,11 +2,11 @@
 
 namespace Magebit\Faq\Model;
 
+use Magebit\Faq\Api\QuestionSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magebit\Faq\Api\Data\QuestionInterface;
-use Magebit\Faq\Api\Data\QuestionSearchResultsInterface;
 use Magebit\Faq\Api\Data\QuestionSearchResultsInterfaceFactory;
 use Magebit\Faq\Api\QuestionRepositoryInterface;
 use Magebit\Faq\Model\ResourceModel\Question\Collection;
@@ -55,11 +55,31 @@ class QuestionRepository implements QuestionRepositoryInterface
     }
 
     /**
+     * @param int $id
+     * @return QuestionInterface
+     * @throws NoSuchEntityException
+     */
+    public function get(int $id): QuestionInterface
+    {
+        $question = $this->questionFactory->create();
+        $question->getResource()->load($question, $id);
+        if (! $question->getId()) {
+            throw new NoSuchEntityException(__('Unable to find question with ID "%1"', $id));
+        }
+        return $question;
+    }
+
+    public function deleteById(QuestionInterface $id): void
+    {
+        $this->delete($this->getById($id));
+    }
+
+    /**
      * @param QuestionInterface $question
      * @return QuestionInterface
      * @throws \Magento\Framework\Exception\AlreadyExistsException
      */
-    public function save(QuestionInterface $question)
+    public function save(QuestionInterface $question):QuestionInterface
     {
         $question->getResource()->save($question);
         return $question;
@@ -70,27 +90,12 @@ class QuestionRepository implements QuestionRepositoryInterface
      * @return void
      * @throws \Exception
      */
-    public function delete(QuestionInterface $question)
+    public function delete(QuestionInterface $question):void
     {
         $question->getResource()->delete($question);
     }
 
-    /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return mixed
-     */
-    public function getList(SearchCriteriaInterface $searchCriteria)
-    {
-        $collection = $this->questionCollectionFactory->create();
 
-        $this->addFiltersToCollection($searchCriteria, $collection);
-        $this->addSortOrdersToCollection($searchCriteria, $collection);
-        $this->addPagingToCollection($searchCriteria, $collection);
-
-        $collection->load();
-
-        return $this->buildSearchResult($searchCriteria, $collection);
-    }
 
     /**
      * @param SearchCriteriaInterface $searchCriteria
@@ -136,9 +141,9 @@ class QuestionRepository implements QuestionRepositoryInterface
     /**
      * @param SearchCriteriaInterface $searchCriteria
      * @param Collection $collection
-     * @return mixed
+     * @return QuestionSearchResultsInterface
      */
-    private function buildSearchResult(SearchCriteriaInterface $searchCriteria, Collection $collection)
+    private function buildSearchResult(SearchCriteriaInterface $searchCriteria, Collection $collection):QuestionSearchResultsInterface
     {
         $searchResults = $this->searchResultFactory->create();
 
@@ -148,6 +153,21 @@ class QuestionRepository implements QuestionRepositoryInterface
 
         return $searchResults;
     }
+    //TODO ask questions list after s:up displays normally, but after refresh all same entries
+    /**
+     * @param SearchCriteriaInterface $searchCriteria
+     * @return QuestionSearchResultsInterface
+     */
+    public function getList(SearchCriteriaInterface $searchCriteria): QuestionSearchResultsInterface
+    {
+        $collection = $this->questionCollectionFactory->create();
 
+        $this->addFiltersToCollection($searchCriteria, $collection);
+        $this->addSortOrdersToCollection($searchCriteria, $collection);
+        $this->addPagingToCollection($searchCriteria, $collection);
 
+        $collection->load();
+
+        return $this->buildSearchResult($searchCriteria, $collection);
+    }
 }

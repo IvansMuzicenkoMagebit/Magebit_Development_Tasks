@@ -36,6 +36,7 @@ class Edit extends Action implements HttpGetActionInterface
     public function execute()
     {
         $id = $this->getRequest()->getParam('id');
+        //delete object manager
         $model = $this->_objectManager->create(\Magebit\Faq\Model\Question::class);
 
         if ($id) {

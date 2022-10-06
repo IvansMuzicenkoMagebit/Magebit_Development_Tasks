@@ -21,6 +21,7 @@ class DataProvider extends AbstractDataProvider
     public function getData(): array
     {
         $result = [];
+        $this->collection->load();
         foreach ($this->collection->getList() as $item) {
             $result[$item->getId()]["general"] = $item->getData();
         }

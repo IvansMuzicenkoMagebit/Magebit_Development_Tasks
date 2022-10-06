@@ -31,7 +31,6 @@
     </settings>
     <dataSource name="faq_question_form_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-<!--   Todo ask about dataProvider-->
             <argument name="class" xsi:type="string">Magebit\Faq\Model\Question\DataProvider</argument>
             <argument name="name" xsi:type="string">faq_question_form_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">id</argument>

@@ -16,7 +16,6 @@ class QuestionActions extends Column
      */
     public const URL_PATH_EDIT = 'faq/question/edit';
     public const URL_PATH_DELETE = 'faq/question/delete';
-    //TODO ASK ABOUT PATHS
 
     /**
      * @var UrlInterface
