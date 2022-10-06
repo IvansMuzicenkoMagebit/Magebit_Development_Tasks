@@ -1,5 +1,5 @@
 <?php
-namespace Api;
+namespace Magebit\Faq\Api;
 
 
 use Magebit\Faq\Api\Data\QuestionInterface;

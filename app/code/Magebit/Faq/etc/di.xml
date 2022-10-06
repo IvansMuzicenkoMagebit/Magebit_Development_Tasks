@@ -10,4 +10,12 @@
             </argument>
         </arguments>
     </type>
+<!--    TODO -->
+<!--    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">-->
+<!--        <arguments>-->
+<!--            <argument name="collections" xsi:type="array">-->
+<!--                <item name="faq_question_form_data_source" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question\Collection</item>-->
+<!--            </argument>-->
+<!--        </arguments>-->
+<!--    </type>-->
 </config>

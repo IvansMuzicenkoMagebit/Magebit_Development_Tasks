@@ -1,7 +1,7 @@
 <?php
 
 namespace Magebit\Faq\Block;
-//TODO ASK
+//Front
 class QuestionList
 {
 

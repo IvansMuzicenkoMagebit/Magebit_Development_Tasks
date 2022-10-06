@@ -3,7 +3,6 @@
 namespace Magebit\Faq\Api\Data;
 
 use Magento\Framework\Api\ExtensibleDataInterface;
-use Magento\Tests\NamingConvention\true\string;
 
 interface QuestionInterface extends ExtensibleDataInterface
 {

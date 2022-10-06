@@ -7,18 +7,16 @@ use Magento\Framework\Data\Collection\EntityFactoryInterface as EntityFactory;
 use Magento\Framework\Event\ManagerInterface as EventManager;
 use Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult;
 use Psr\Log\LoggerInterface as Logger;
+use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
 
-class Collection extends SearchResult
+class Collection extends AbstractCollection
 {
-    public function __construct(
-        EntityFactory $entityFactory,
-        Logger        $logger,
-        FetchStrategy $fetchStrategy,
-        EventManager  $eventManager,
-        $mainTable = "magebit_faq",
-        $resourceModel = "Magebit\Faq\Model\ResourceModel\Question"
-    )
+    protected $_idFieldName = 'id';
+    protected $_eventPrefix = 'faq';
+    protected $_eventObject = 'faq_collection';
+
+    protected function _construct()
     {
-        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel);
+        $this->_init('Magebit\Faq\Model\Question', 'Magebit\Faq\Model\ResourceModel\Question');
     }
 }

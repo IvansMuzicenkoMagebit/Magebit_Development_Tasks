@@ -1,10 +1,9 @@
 <?php
 
 namespace Magebit\Faq\Model\Question;
+use Magento\Ui\DataProvider\AbstractDataProvider;
 
-use Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider as MagentoDataProvider;
-
-class DataProvider extends MagentoDataProvider
+class DataProvider extends AbstractDataProvider
 {
     protected $collection;
 
@@ -19,7 +18,7 @@ class DataProvider extends MagentoDataProvider
         parent::__construct($name, $primaryFieldName, $requestFieldName, $meta, $data);
         $this->collection = $collectionFactory->create();
     }
-    public function getData()
+    public function getData(): array
     {
         $result = [];
         foreach ($this->collection->getList() as $item) {
