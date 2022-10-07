@@ -18,6 +18,13 @@ class Collection extends SearchResult
         $mainTable = "magebit_faq",
         $resourceModel = "Magebit\Faq\Model\ResourceModel\Question"
     ) {
-        parent::__construct($entityFactory, $logger, $fetchStrategy, $eventManager, $mainTable, $resourceModel);
+        parent::__construct(
+            $entityFactory,
+            $logger,
+            $fetchStrategy,
+            $eventManager,
+            $mainTable,
+            $resourceModel
+        );
     }
 }

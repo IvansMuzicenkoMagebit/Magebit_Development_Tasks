@@ -94,9 +94,7 @@ class QuestionRepository implements QuestionRepositoryInterface
     {
         $question->getResource()->delete($question);
     }
-
-
-
+    
     /**
      * @param SearchCriteriaInterface $searchCriteria
      * @param Collection $collection

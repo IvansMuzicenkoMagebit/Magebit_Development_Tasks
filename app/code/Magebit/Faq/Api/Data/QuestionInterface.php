@@ -9,7 +9,7 @@ interface QuestionInterface extends ExtensibleDataInterface
     /**
      * @return int
      */
-    public function getId():int;
+    public function getId();
 
 
     /**

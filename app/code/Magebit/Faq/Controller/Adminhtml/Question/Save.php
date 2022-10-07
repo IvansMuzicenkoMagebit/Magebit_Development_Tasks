@@ -14,14 +14,14 @@ class Save extends Action
 
     public function __construct(Context $context, QuestionFactory $questionFactory)
     {
-        $this->questionFactory = $questionFactory;
         parent::__construct($context);
+        $this->questionFactory = $questionFactory;
     }
 
     public function execute()
     {
         $this->questionFactory->create()
-            ->setData($this->getRequest()->getPostValue()["general"])
+            ->setData($this->getRequest()->getPostValue())
             ->save();
         return $this->resultRedirectFactory->create()->setPath("faq/question/index");
     }

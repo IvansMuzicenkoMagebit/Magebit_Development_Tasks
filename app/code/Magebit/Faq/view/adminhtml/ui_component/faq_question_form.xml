@@ -5,11 +5,11 @@
             <item name="provider" xsi:type="string">faq_question_form.faq_question_form_data_source</item>
             <item name="deps" xsi:type="string">faq_question_form.faq_question_form_data_source</item>
         </item>
-<!--        <item name="label" xsi:type="string" translate="true">General</item>-->
-<!--        <item name="layout" xsi:type="array">-->
-<!--            <item name="type" xsi:type="string">tabs</item>-->
-<!--            <item name="navContainerName" xsi:type="string">left</item>-->
-<!--        </item>-->
+        <item name="config" xsi:type="array">
+<!--            <item name="dataScope" xsi:type="string">data</item>-->
+            <item name="namespace" xsi:type="string">faq_question_form</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
         <item name="buttons" xsi:type="array">
             <item name="save" xsi:type="array">
                 <item name="name" xsi:type="string">save</item>
@@ -19,7 +19,6 @@
             </item>
         </item>
     </argument>
-
     <settings>
         <buttons>
             <button name="save" class="Magebit\Faq\Ui\Component\Form\Button\Save"/>
@@ -30,41 +29,61 @@
         </deps>
     </settings>
     <dataSource name="faq_question_form_data_source">
-        <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Magebit\Faq\Model\Question\DataProvider</argument>
-            <argument name="name" xsi:type="string">faq_question_form_data_source</argument>
-            <argument name="primaryFieldName" xsi:type="string">id</argument>
-            <argument name="requestFieldName" xsi:type="string">id</argument>
-            <argument name="collectionFactory" xsi:type="object">Magebit\Faq\Model\ResourceModel\Question\CollectionFactory</argument>
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="submit_url" xsi:type="url" path="faq/question/save">faq/question/save</item>
-                </item>
-            </argument>
-        </argument>
         <argument name="data" xsi:type="array">
             <item name="js_config" xsi:type="array">
                 <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
             </item>
         </argument>
+        <settings>
+            <submitUrl path="faq/question/save"/>
+        </settings>
+        <dataProvider class="Magebit\Faq\Model\Question\DataProvider" name="faq_question_form_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
     </dataSource>
-
-    <fieldset name="general">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">New FAQ</item>
-            </item>
-        </argument>
-
-        <field name="enable">
+    <fieldset name="question">
+        <settings>
+            <label/>
+        </settings>
+        <field name="id" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Enable Question</item>
-                    <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">boolean</item>
-                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="source" xsi:type="string">question</item>
                 </item>
             </argument>
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <dataScope>page_id</dataScope>
+            </settings>
+        </field>
+
+        <field name="status" sortOrder="10" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">faq_question</item>
+                    <item name="default" xsi:type="number">1</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Enable Question</label>
+                <dataScope>status</dataScope>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
         </field>
         <field name="question">
             <argument name="data" xsi:type="array">
@@ -73,6 +92,7 @@
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
+                    <item name="source" xsi:type="string">category</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -86,6 +106,7 @@
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="source" xsi:type="string">question</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>

@@ -3,6 +3,12 @@
     <preference for="Magebit\Faq\Api\QuestionRepositoryInterface" type="Magebit\Faq\Model\QuestionRepository"/>
     <preference for="Magebit\Faq\Api\Data\QuestionInterface" type="Magebit\Faq\Model\Question"/>
     <preference for="Magebit\Faq\Api\Data\QuestionSearchResultsInterface" type="Magebit\Faq\Model\QuestionSearchResults"/>
+    <virtualType name="Magebit\Faq\Model\ResourceModel\Question\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">magebit_faq</argument>
+            <argument name="resourceModel" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question</argument>
+        </arguments>
+    </virtualType>
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
@@ -10,10 +16,19 @@
             </argument>
         </arguments>
     </type>
-    <virtualType name="Magebit\Faq\Model\ResourceModel\Question\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+
+    <virtualType name="Magebit\Faq\Model\ResourceModel\Question\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>
             <argument name="mainTable" xsi:type="string">magebit_faq</argument>
             <argument name="resourceModel" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question</argument>
         </arguments>
     </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="faq_question_form_data_source" xsi:type="string">Magebit\Faq\Model\ResourceModel\Question\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
 </config>

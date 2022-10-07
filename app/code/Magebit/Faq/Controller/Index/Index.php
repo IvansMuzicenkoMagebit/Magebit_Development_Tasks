@@ -2,45 +2,52 @@
 
 namespace Magebit\Faq\Controller\Index;
 
-use Magento\Backend\App\Action;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\View\Result\Page;
-use Magento\Framework\View\Result\PageFactory;
-use Magento\Framework\App\Action\HttpGetActionInterface;
+use Magebit\Faq\Model\QuestionFactory;
+use Magento\Backend\App\AbstractAction;
 
-class Index extends Action implements HttpGetActionInterface
+abstract class Index extends AbstractAction
 {
     /**
-     * @var PageFactory
+     * Authorization level of a basic admin session
+     *
+     * @see _isAllowed()
      */
-    private $pageFactory;
+    const ADMIN_RESOURCE = 'Magento_User::acl_users';
 
     /**
-     * Constructor
+     * Core registry
      *
-     * @param Context $context
-     * @param PageFactory $rawFactory
+     * @var \Magento\Framework\Registry
+     */
+    protected $_coreRegistry;
+
+    /**
+     *
+     * @var QuestionFactory
+     */
+    protected $_questionFactory;
+
+    /**
+     * @param \Magento\Backend\App\Action\Context $context
+     * @param \Magento\Framework\Registry $coreRegistry
+     * @param QuestionFactory $questionFactory
      */
     public function __construct(
-        Context $context,
-        PageFactory $rawFactory
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        QuestionFactory $questionFactory
     ) {
-        $this->pageFactory = $rawFactory;
-
         parent::__construct($context);
+        $this->_coreRegistry = $coreRegistry;
+        $this->_questionFactory = $questionFactory;
     }
 
-    /**
-     * Add the main Admin Grid page
-     *
-     * @return Page
-     */
-    public function execute(): Page
+    protected function _initAction()
     {
-        $resultPage = $this->pageFactory->create();
-        $resultPage->setActiveMenu('Magebit_Faq::question');
-        $resultPage->getConfig()->getTitle()->prepend(__('FAQ'));
-
-        return $resultPage;
+        $this->_view->loadLayout();
+        $this->_setActiveMenu(
+            'Magento_faq::home'
+        );
+        return $this;
     }
 }

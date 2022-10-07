@@ -2,60 +2,42 @@
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Backend\App\Action;
-use Magento\Framework\App\Action\HttpGetActionInterface;
-use Magento\Framework\View\Result\PageFactory;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Framework\Locale\Resolver;
 
-class Edit extends Action implements HttpGetActionInterface
+class Edit extends \Magebit\Faq\Controller\Index\Index
 {
+//    public function execute()
+//    {
+//        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
+//    }
     /**
-     * @var PageFactory
-     */
-    protected $resultPageFactory;
-
-    /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
-     * @param PageFactory $resultPageFactory
-     */
-    public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
-        PageFactory $resultPageFactory
-    ) {
-        $this->resultPageFactory = $resultPageFactory;
-        parent::__construct($context, $coreRegistry);
-    }
-
-    /**
-     * Edit CMS block
-     *
-     * @return \Magento\Framework\Controller\ResultInterface
-     * @SuppressWarnings(PHPMD.NPathComplexity)
+     * @return void
      */
     public function execute()
     {
-        $id = $this->getRequest()->getParam('id');
-        //delete object manager
-        $model = $this->_objectManager->create(\Magebit\Faq\Model\Question::class);
+        $questionId = $this->getRequest()->getParam('id');
+        /** @var \Magebit\Faq\Model\Question $model */
+        $model = $this->_questionFactory->create();
 
-        if ($id) {
-            $model->load($id);
+        if ($questionId) {
+            $model->load($questionId);
             if (!$model->getId()) {
-                $this->messageManager->addErrorMessage(__('This block no longer exists.'));
-                /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
-                $resultRedirect = $this->resultRedirectFactory->create();
-                return $resultRedirect->setPath('*/*/');
+                $this->messageManager->addError(__('This question no longer exists.'));
+                $this->_redirect('*/*/index');
+                return;
             }
+        } else {
+            $model->setInterfaceLocale(Resolver::DEFAULT_LOCALE);
         }
 
-        $this->_coreRegistry->register('faq_block', $model);
+//        echo json_encode($model);
 
-        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
-        $resultPage = $this->resultPageFactory->create();
-        $this->initPage($resultPage);
-        $resultPage->getConfig()->getTitle()->prepend(__('Blocks'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Block'));
-        return $resultPage;
+//        $this->_coreRegistry->register('question', $model);
+
+        $this->_initAction();
+        $this->_view->getPage()->getConfig()->getTitle()->prepend(__('Question'));
+        $this->_view->getPage()->getConfig()->getTitle()->prepend("FAQ Question");
+        $this->_view->renderLayout();
     }
 }
