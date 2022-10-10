@@ -6,18 +6,18 @@
             <item name="deps" xsi:type="string">faq_question_form.faq_question_form_data_source</item>
         </item>
         <item name="config" xsi:type="array">
-<!--            <item name="dataScope" xsi:type="string">data</item>-->
+            <item name="dataScope" xsi:type="string">data</item>
             <item name="namespace" xsi:type="string">faq_question_form</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
-        <item name="buttons" xsi:type="array">
-            <item name="save" xsi:type="array">
-                <item name="name" xsi:type="string">save</item>
-                <item name="label" xsi:type="string" translate="true">Save</item>
-                <item name="class" xsi:type="string">primary</item>
-                <item name="url" xsi:type="string">*/*/save</item>
-            </item>
-        </item>
+<!--        <item name="buttons" xsi:type="array">-->
+<!--            <item name="save" xsi:type="array">-->
+<!--                <item name="name" xsi:type="string">save</item>-->
+<!--                <item name="label" xsi:type="string" translate="true">Save</item>-->
+<!--                <item name="class" xsi:type="string">primary</item>-->
+<!--                <item name="url" xsi:type="string">*/*/save</item>-->
+<!--            </item>-->
+<!--        </item>-->
     </argument>
     <settings>
         <buttons>
@@ -48,23 +48,25 @@
         <settings>
             <label/>
         </settings>
-        <field name="id" formElement="input">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">question</item>
-                </item>
-            </argument>
-            <settings>
-                <dataType>text</dataType>
-                <visible>false</visible>
-                <dataScope>page_id</dataScope>
-            </settings>
-        </field>
+<!--       This field breaks new item creation-->
+
+<!--        <field name="id" formElement="input">-->
+<!--            <argument name="data" xsi:type="array">-->
+<!--                <item name="config" xsi:type="array">-->
+<!--                    <item name="source" xsi:type="string">id</item>-->
+<!--                </item>-->
+<!--            </argument>-->
+<!--            <settings>-->
+<!--                <dataType>text</dataType>-->
+<!--                <visible>false</visible>-->
+<!--                <dataScope>id</dataScope>-->
+<!--            </settings>-->
+<!--        </field>-->
 
         <field name="status" sortOrder="10" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="source" xsi:type="string">faq_question</item>
+                    <item name="source" xsi:type="string">status</item>
                     <item name="default" xsi:type="number">1</item>
                 </item>
             </argument>
@@ -92,7 +94,7 @@
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">input</item>
-                    <item name="source" xsi:type="string">category</item>
+                    <item name="source" xsi:type="string">question</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
@@ -106,7 +108,7 @@
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
                     <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="source" xsi:type="string">question</item>
+                    <item name="source" xsi:type="string">answer</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>

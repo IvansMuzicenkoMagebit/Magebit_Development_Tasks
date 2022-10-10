@@ -2,21 +2,25 @@
 
 namespace Magebit\Faq\Model\Question\Source;
 
-class Status implements \Magento\Framework\Option\ArrayInterface
+use Magento\Framework\Data\OptionSourceInterface;
+
+class Status implements OptionSourceInterface
 {
     const STATUS_ENABLED = 1;
     const STATUS_DISABLED = 0;
-    public function toOptionArray()
+
+    public function toOptionArray(): array
     {
-        return [
-            [
-                self::STATUS_ENABLED => __('Enabled'),
-                self::STATUS_DISABLED => __('Disabled'),
-            ],
-        ];
-    }
-    public static function getOptionArray()
-    {
-        return [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+        $options = [];
+        $availableOptions = [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
+
+        foreach ($availableOptions as $key => $value) {
+            $options[] = [
+                'label' => $value,
+                'value' => $key,
+            ];
+        }
+
+        return $options;
     }
 }

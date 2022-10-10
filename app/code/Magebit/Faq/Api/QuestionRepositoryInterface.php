@@ -27,10 +27,10 @@ interface QuestionRepositoryInterface
     public function delete(QuestionInterface $question):void;
 
     /**
-     * @param QuestionInterface $id
+     * @param int $id
      * @return void
      */
-    public function deleteById(QuestionInterface $id):void;
+    public function deleteById(int $id):void;
 
     /**
      * @param SearchCriteriaInterface $searchCriteria

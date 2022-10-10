@@ -32,11 +32,11 @@ class QuestionRepository implements QuestionRepositoryInterface
     public function __construct(
         QuestionFactory $questionFactory,
         QuestionCollectionFactory $questionCollectionFactory,
-        QuestionSearchResultInterfaceFactory $questionSearchResultInterfaceFactory)
+        QuestionSearchResultsInterfaceFactory $questionSearchResultsInterfaceFactory)
     {
         $this->questionFactory = $questionFactory;
         $this->questionCollectionFactory = $questionCollectionFactory;
-        $this->searchResultFactory = $questionSearchResultInterfaceFactory;
+        $this->searchResultFactory = $questionSearchResultsInterfaceFactory;
     }
 
     /**
@@ -69,7 +69,7 @@ class QuestionRepository implements QuestionRepositoryInterface
         return $question;
     }
 
-    public function deleteById(QuestionInterface $id): void
+    public function deleteById(int $id): void
     {
         $this->delete($this->getById($id));
     }
@@ -94,7 +94,7 @@ class QuestionRepository implements QuestionRepositoryInterface
     {
         $question->getResource()->delete($question);
     }
-    
+
     /**
      * @param SearchCriteriaInterface $searchCriteria
      * @param Collection $collection

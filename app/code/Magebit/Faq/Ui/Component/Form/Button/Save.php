@@ -3,21 +3,22 @@
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
 use Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
+use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 use Magento\Ui\Component\Control\Container;
 
 /**
  * Class Save
  */
-class Save extends Generic
+class Save implements ButtonProviderInterface
 {
     /**
      * {@inheritdoc}
      */
     public function getButtonData()
     {
-        if ($this->getProduct()->isReadonly()) {
-            return [];
-        }
+//        if ($this->getProduct()->isReadonly()) {
+//            return [];
+//        }
 
         return [
             'label' => __('Save'),

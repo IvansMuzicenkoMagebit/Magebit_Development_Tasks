@@ -4,6 +4,8 @@ namespace Magebit\Faq\Controller\Index;
 
 use Magebit\Faq\Model\QuestionFactory;
 use Magento\Backend\App\AbstractAction;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Registry;
 
 abstract class Index extends AbstractAction
 {
@@ -17,7 +19,7 @@ abstract class Index extends AbstractAction
     /**
      * Core registry
      *
-     * @var \Magento\Framework\Registry
+     * @var Registry
      */
     protected $_coreRegistry;
 
@@ -28,13 +30,13 @@ abstract class Index extends AbstractAction
     protected $_questionFactory;
 
     /**
-     * @param \Magento\Backend\App\Action\Context $context
-     * @param \Magento\Framework\Registry $coreRegistry
+     * @param Context $context
+     * @param Registry $coreRegistry
      * @param QuestionFactory $questionFactory
      */
     public function __construct(
-        \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Registry $coreRegistry,
+        Context $context,
+        Registry $coreRegistry,
         QuestionFactory $questionFactory
     ) {
         parent::__construct($context);

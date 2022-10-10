@@ -81,9 +81,12 @@
             <action name="edit">
                 <argument name="data" xsi:type="array">
                     <item name="config" xsi:type="array">
+                        <item name="callback" xsi:type="array">
+                            <item name="target" xsi:type="string">editSelected</item>
+                            <item name="provider" xsi:type="string">faq_question_listing.faq_question_listing.faq_question_columns_editor</item>
+                        </item>
                         <item name="type" xsi:type="string">edit</item>
                         <item name="label" xsi:type="string" translate="true">Edit</item>
-                        <item name="url" xsi:type="url" path="faq/question/InlineEdit"/>
                     </item>
                 </argument>
             </action>
@@ -92,6 +95,29 @@
         <paging name="listing_paging"/>
     </listingToolbar>
     <columns name="faq_question_columns">
+        <settings>
+            <editorConfig>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" xsi:type="url" path="faq/question/InlineEdit"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+                <param name="indexField" xsi:type="string">id</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="selectProvider" xsi:type="string">
+                    faq_question_listing.faq_question_listing.faq_question_columns.ids
+                </param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">faq_question_listing.faq_question_listing.faq_question_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
         <selectionsColumn name="ids">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -111,19 +137,35 @@
                 <filter>text</filter>
                 <bodyTmpl>ui/grid/cells/text</bodyTmpl>
                 <label translate="true">Question</label>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
             </settings>
         </column>
 
-        <column name="status">
+        <column name="status" component="Magento_Ui/js/grid/columns/select">
             <settings>
-                <filter>text</filter>
-                <dataType>text</dataType>
+                <options class="Magebit\Faq\Model\Question\Source\Status"/>
+                <filter>select</filter>
                 <label translate="true">Status</label>
+                <editor>
+                    <editorType>select</editorType>
+                </editor>
+                <dataType>select</dataType>
             </settings>
         </column>
         <column name="position">
             <settings>
                 <filter>number</filter>
+                <editor>
+                    <validation>
+                        <rule name="required-entry" xsi:type="boolean">true</rule>
+                    </validation>
+                    <editorType>text</editorType>
+                </editor>
                 <dataType>number</dataType>
                 <label translate="true">Position</label>
             </settings>

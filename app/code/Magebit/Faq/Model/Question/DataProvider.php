@@ -26,17 +26,8 @@ class DataProvider extends AbstractDataProvider
     {
         $result = [];
         foreach ($this->collection->getItems() as $item) {
-            $result[$item->getId()]["general"] = $item->getData();
+            $result[$item->getId()] = $item->getData();
         }
         return $result;
-//        if (isset($this->loadedData)) {
-//            return $this->loadedData;
-//        }
-//        /** @var \Magebit\Faq\Model\Question $item */
-//        foreach ($this->collection->getItems() as $item) {
-//            $this->loadedData[$item->getId()] = $item->getData();
-//        }
-//
-//        return $this->loadedData;
     }
 }

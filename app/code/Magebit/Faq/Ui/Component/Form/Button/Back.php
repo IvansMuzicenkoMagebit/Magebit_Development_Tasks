@@ -2,9 +2,11 @@
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
-use Magento\Catalog\Block\Adminhtml\Product\Edit\Button\Generic;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Backend\App\Action;
+use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
-class Back extends Generic
+class Back extends Action implements ButtonProviderInterface
 {
     /**
      * Get Button Data
@@ -21,18 +23,17 @@ class Back extends Generic
         ];
     }
     /**
-     * Get URL for back
      *
      * @return string
      */
     private function getBackUrl()
     {
-        if ($this->context->getRequestParam('customerId')) {
-            return $this->getUrl(
-                'customer/index/edit',
-                ['id' => $this->context->getRequestParam('customerId')]
-            );
-        }
-        return $this->getUrl('*/*/');
+        return $this->getUrl(
+            'faq/question/index'
+        );
+    }
+
+    public function execute()
+    {
     }
 }

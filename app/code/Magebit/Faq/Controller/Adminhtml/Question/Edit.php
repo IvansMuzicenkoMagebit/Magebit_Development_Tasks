@@ -7,10 +7,6 @@ use Magento\Framework\Locale\Resolver;
 
 class Edit extends \Magebit\Faq\Controller\Index\Index
 {
-//    public function execute()
-//    {
-//        return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-//    }
     /**
      * @return void
      */
@@ -31,9 +27,8 @@ class Edit extends \Magebit\Faq\Controller\Index\Index
             $model->setInterfaceLocale(Resolver::DEFAULT_LOCALE);
         }
 
-//        echo json_encode($model);
 
-//        $this->_coreRegistry->register('question', $model);
+        $this->_coreRegistry->register('question', $model);
 
         $this->_initAction();
         $this->_view->getPage()->getConfig()->getTitle()->prepend(__('Question'));

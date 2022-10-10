@@ -1,21 +1,19 @@
 <?php
 namespace Magebit\Faq\Api;
 
-
 use Magebit\Faq\Api\Data\QuestionInterface;
 
 interface QuestionManagementInterface
 {
     /**
-     * @param QuestionInterface $question
-     * @return QuestionInterface
+     * @param int $id
+     * @return void
      */
-    public function enableQuestion(QuestionInterface $question):QuestionInterface;
+    public function enableQuestion(int $id):void;
 
     /**
-     * @param QuestionInterface $question
-     * @return QuestionInterface
+     * @param int $id
+     * @return void
      */
-    public function disableQuestion(QuestionInterface $question):QuestionInterface;
-
+    public function disableQuestion(int $id):void;
 }
