@@ -1,11 +1,12 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Locale\Resolver;
 
-class Edit extends \Magebit\Faq\Controller\Index\Index
+class Edit extends \Magebit\Faq\Controller\Index\AbstractQuestionActions
 {
     /**
      * @return void

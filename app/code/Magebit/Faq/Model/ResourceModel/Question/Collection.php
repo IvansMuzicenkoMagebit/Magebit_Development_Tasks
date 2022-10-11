@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Model\ResourceModel\Question;
 
@@ -13,6 +14,5 @@ class Collection extends AbstractCollection
     protected function _construct()
     {
         $this->_init('Magebit\Faq\Model\Question', 'Magebit\Faq\Model\ResourceModel\Question');
-//        $this->_map['fields']['id'] = 'main_table.page_id';
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Model\ResourceModel;
 
@@ -8,6 +9,9 @@ class Question extends AbstractDb
 {
     protected $_idFieldName = "id";
 
+    /**
+     * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
+     */
     public function __construct(
         \Magento\Framework\Model\ResourceModel\Db\Context $context
     ) {

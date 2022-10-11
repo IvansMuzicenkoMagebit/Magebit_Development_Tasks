@@ -1,55 +1,32 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Index;
 
-use Magebit\Faq\Model\QuestionFactory;
-use Magento\Backend\App\AbstractAction;
-use Magento\Backend\App\Action\Context;
-use Magento\Framework\Registry;
+use Magento\Framework\App\Action\Context;
+use Magento\Framework\View\Result\PageFactory;
 
-abstract class Index extends AbstractAction
+class Index extends \Magento\Framework\App\Action\Action
 {
-    /**
-     * Authorization level of a basic admin session
-     *
-     * @see _isAllowed()
-     */
-    const ADMIN_RESOURCE = 'Magento_User::acl_users';
-
-    /**
-     * Core registry
-     *
-     * @var Registry
-     */
-    protected $_coreRegistry;
-
-    /**
-     *
-     * @var QuestionFactory
-     */
-    protected $_questionFactory;
+    /** @var  \Magento\Framework\View\Result\Page */
+    protected $resultPageFactory;
 
     /**
      * @param Context $context
-     * @param Registry $coreRegistry
-     * @param QuestionFactory $questionFactory
+     * @param PageFactory $resultPageFactory
      */
-    public function __construct(
-        Context $context,
-        Registry $coreRegistry,
-        QuestionFactory $questionFactory
-    ) {
-        parent::__construct($context);
-        $this->_coreRegistry = $coreRegistry;
-        $this->_questionFactory = $questionFactory;
-    }
-
-    protected function _initAction()
+    public function __construct(\Magento\Framework\App\Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory)
     {
-        $this->_view->loadLayout();
-        $this->_setActiveMenu(
-            'Magento_faq::home'
-        );
-        return $this;
+        $this->resultPageFactory = $resultPageFactory;
+        parent::__construct($context);
+    }
+    /**
+     * @return \Magento\Framework\View\Result\PageFactory
+     */
+    public function execute()
+    {
+        $resultPage = $this->resultPageFactory->create();
+        $resultPage->getConfig()->getTitle()->prepend(__('Frequently Asked Questions'));
+        return $resultPage;
     }
 }

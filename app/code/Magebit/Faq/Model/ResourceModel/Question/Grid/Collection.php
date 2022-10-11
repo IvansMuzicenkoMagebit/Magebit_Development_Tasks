@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Model\ResourceModel\Question\Grid;
 
@@ -10,9 +11,6 @@ use Psr\Log\LoggerInterface as Logger;
 
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
-    /**
-     * Resource initialization.
-     */
     protected $_idFieldName = 'id';
 
     protected $_eventPrefix = 'faq';

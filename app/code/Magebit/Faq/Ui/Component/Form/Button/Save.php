@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
@@ -14,12 +15,8 @@ class Save implements ButtonProviderInterface
     /**
      * {@inheritdoc}
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
-//        if ($this->getProduct()->isReadonly()) {
-//            return [];
-//        }
-
         return [
             'label' => __('Save'),
             'class' => 'save primary',
@@ -48,7 +45,7 @@ class Save implements ButtonProviderInterface
      *
      * @return array
      */
-    protected function getOptions()
+    protected function getOptions(): array
     {
 
         $options[] = [

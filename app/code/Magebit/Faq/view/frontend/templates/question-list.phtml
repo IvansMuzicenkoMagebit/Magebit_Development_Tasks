@@ -2,16 +2,30 @@
 
 use Magebit\Faq\Block\QuestionList;
 
-/** @var QuestionList $list */
+/** @var QuestionList $block */
 ?>
-<!--Selected pages display block-->
+
 <div>
-    <h3>Frequently Asked Question</h3>
+    <div id="accordion">
     <?php
-    $faqArray = $list->getItems();
+    $faqArray = $block->getFaqList();
 
     foreach ($faqArray as $qa) {
-        //TODO
+        echo "<div data-role='collapsible' class='accordion-question'>
+                <div data-role='trigger'>
+                    <span>" . $qa['question'] . "</span>
+                </div>
+            </div>
+            <div data-role='content' class='accordion-answer'>" . $qa['answer'] . "</div>";
     }
     ?>
+    </div>
 </div>
+
+<script>
+    require([
+        'jquery',
+        'accordion'], function ($) {
+        $("#accordion").accordion();
+    });
+</script>

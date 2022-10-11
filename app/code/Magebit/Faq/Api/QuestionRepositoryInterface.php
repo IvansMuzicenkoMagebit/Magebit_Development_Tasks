@@ -3,6 +3,7 @@ namespace Magebit\Faq\Api;
 
 
 use Magebit\Faq\Api\Data\QuestionInterface;
+use Magebit\Faq\Api\Data\QuestionSearchResultsInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 
@@ -36,7 +37,7 @@ interface QuestionRepositoryInterface
      * @param SearchCriteriaInterface $searchCriteria
      * @return QuestionSearchResultsInterface
      */
-    public function getList(SearchCriteriaInterface $searchCriteria):QuestionSearchResultsInterface;
+    public function getList(SearchCriteriaInterface $searchCriteria);
 
 
 }

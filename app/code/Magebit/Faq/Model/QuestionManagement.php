@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Model;
 
@@ -15,6 +16,9 @@ class QuestionManagement implements QuestionManagementInterface
      */
     private QuestionFactory $questionFactory;
 
+    /**
+     * @param QuestionFactory $questionFactory
+     */
     public function __construct(QuestionFactory $questionFactory)
     {
         $this->questionFactory = $questionFactory;

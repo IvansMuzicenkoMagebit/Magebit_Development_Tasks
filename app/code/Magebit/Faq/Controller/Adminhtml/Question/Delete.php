@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
@@ -7,11 +8,10 @@ use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 
 
-class Delete extends \Magebit\Faq\Controller\Index\Index
+class Delete extends \Magebit\Faq\Controller\Index\AbstractQuestionActions
 {
     public function execute()
     {
-
         $questionId = $this->getRequest()->getParam('id');
         /** @var \Magebit\Faq\Model\Question $model */
         $model = $this->_questionFactory->create();

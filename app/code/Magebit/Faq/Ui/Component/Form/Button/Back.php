@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace Magebit\Faq\Ui\Component\Form\Button;
 
@@ -9,11 +10,9 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 class Back extends Action implements ButtonProviderInterface
 {
     /**
-     * Get Button Data
-     *
      * @return array
      */
-    public function getButtonData()
+    public function getButtonData(): array
     {
         return [
             'label' => __('Back'),
@@ -26,7 +25,7 @@ class Back extends Action implements ButtonProviderInterface
      *
      * @return string
      */
-    private function getBackUrl()
+    private function getBackUrl(): string
     {
         return $this->getUrl(
             'faq/question/index'

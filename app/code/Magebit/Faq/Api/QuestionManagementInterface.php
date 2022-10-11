@@ -1,4 +1,6 @@
 <?php
+declare(strict_types = 1);
+
 namespace Magebit\Faq\Api;
 
 use Magebit\Faq\Api\Data\QuestionInterface;
