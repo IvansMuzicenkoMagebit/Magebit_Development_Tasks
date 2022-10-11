@@ -24,6 +24,9 @@ class Save extends Action
         $this->questionFactory->create()
             ->setData($this->getRequest()->getPostValue())
             ->save();
+        if ($this->getRequest()->getParam("back") == "edit") {
+            return $this->resultRedirectFactory->create()->setPath("*/*/edit", ['id' => $this->getRequest()->getParam('id')]);
+        }
         return $this->resultRedirectFactory->create()->setPath("faq/question/index");
     }
 }
