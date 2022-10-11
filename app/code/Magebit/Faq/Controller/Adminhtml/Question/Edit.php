@@ -32,6 +32,7 @@ class Edit extends \Magebit\Faq\Controller\Index\AbstractQuestionActions
         $this->_coreRegistry->register('question', $model);
 
         $this->_initAction();
+        $this->_setActiveMenu('Magebit_Faq::faq');
         $this->_view->getPage()->getConfig()->getTitle()->prepend(__('Question'));
         $this->_view->getPage()->getConfig()->getTitle()->prepend("FAQ Question");
         $this->_view->renderLayout();

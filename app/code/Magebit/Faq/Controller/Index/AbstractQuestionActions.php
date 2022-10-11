@@ -49,7 +49,7 @@ abstract class AbstractQuestionActions extends AbstractAction
     {
         $this->_view->loadLayout();
         $this->_setActiveMenu(
-            'Magento_Faq::home'
+            'Magento_Faq::faq'
         );
         return $this;
     }
