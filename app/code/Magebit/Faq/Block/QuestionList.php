@@ -7,9 +7,14 @@ use Magento\Framework\Api\SearchCriteria;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
 use Magebit\Faq\Api\QuestionRepositoryInterface;
+use Magento\Framework\Api\SortOrder;
 
 class QuestionList extends Template
 {
+    /**
+     * @var SortOrder
+     */
+    protected SortOrder $sortOrder;
 
     /**
      * @param Template\Context $context
@@ -21,11 +26,13 @@ class QuestionList extends Template
         \Magento\Framework\View\Element\Template\Context $context,
         QuestionRepositoryInterface $questionRepository,
         \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
+        SortOrder $sortOrder,
         array $data = []
     ) {
         parent::__construct($context, $data);
         $this->_faqList = $questionRepository;
         $this->_search = $searchCriteriaBuilder;
+        $this->sortOrder = $sortOrder;
     }
     protected function _construct()
     {
@@ -38,7 +45,8 @@ class QuestionList extends Template
      */
     private function _getSearchCriteria():SearchCriteria
     {
-        return $this->_search->addFilter('status', '1')->create();
+        $sortOrder = $this->sortOrder->setField("position")->setDirection("ASC");
+        return $this->_search->addFilter('status', '1')->setSortOrders([$sortOrder])->create();
     }
 
 
