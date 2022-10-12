@@ -38,8 +38,8 @@ abstract class AbstractQuestionActions extends AbstractAction
 
     protected function _initAction($resultPage)
     {
-        $resultPage->setActiveMenu('Magebit_Faq::faq');
-        $resultPage->getConfig()->getTitle()->prepend(__('Question'));
+        $resultPage->setActiveMenu("Magebit_Faq::faq");
+        $resultPage->getConfig()->getTitle()->prepend(__("Question"));
         $resultPage->getConfig()->getTitle()->prepend("FAQ Question");
         return $resultPage;
     }

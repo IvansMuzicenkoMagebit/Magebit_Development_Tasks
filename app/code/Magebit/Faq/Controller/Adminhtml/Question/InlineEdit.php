@@ -4,10 +4,10 @@ declare(strict_types = 1);
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
 use Magebit\Faq\Model\QuestionRepository;
-use Magebit\Faq\Model\Question;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Controller\Result\JsonFactory;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class InlineEdit extends Action
 {
@@ -16,10 +16,6 @@ class InlineEdit extends Action
      */
     protected $jsonFactory;
 
-    /**
-     * @var Question
-     */
-    protected $model;
 
     /**
      * @var QuestionRepository
@@ -29,15 +25,16 @@ class InlineEdit extends Action
     public function __construct(
         Context     $context,
         JsonFactory $jsonFactory,
-        Question $model,
         QuestionRepository $questionRepository
     ) {
         parent::__construct($context);
         $this->jsonFactory = $jsonFactory;
-        $this->model = $model;
         $this->questionRepository = $questionRepository;
     }
 
+    /**
+     * @throws NoSuchEntityException
+     */
     public function execute()
     {
         $error = false;
@@ -51,8 +48,8 @@ class InlineEdit extends Action
                 $messages[] = __('Please correct the data sent.');
                 $error = true;
             } else {
-                foreach (array_keys($editItems) as $id) {
-                    $modelData = $this->model->load($id);
+                foreach ($editItems as $id => $value) {
+                    $modelData = $this->questionRepository->getById($id);
 
                     try {
                         $modelData->setData(array_merge($modelData->getData(), $editItems[$id]));

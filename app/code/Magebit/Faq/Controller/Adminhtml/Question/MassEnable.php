@@ -3,13 +3,13 @@ declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Backend\App\Action\Context;
-use Magento\Ui\Component\MassAction\Filter;
-use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
 use Magebit\Faq\Model\QuestionManagement;
+use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Controller\ResultFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Ui\Component\MassAction\Filter;
 
 class MassEnable extends \Magento\Backend\App\Action
 {
@@ -27,7 +27,6 @@ class MassEnable extends \Magento\Backend\App\Action
      * @var QuestionManagement
      */
     protected $questionManagement;
-
 
     /**
      * @param Context $context
@@ -53,12 +52,12 @@ class MassEnable extends \Magento\Backend\App\Action
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize = $collection->getSize();
         foreach ($collection as $item) {
-            $this->questionManagement->enableQuestion((int)$item->getId());
+            $this->questionManagement->enableQuestion($item);
         }
 
         $this->messageManager->addSuccess(__('A total of %1 record(s) have been enabled.', $collectionSize));
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');
     }

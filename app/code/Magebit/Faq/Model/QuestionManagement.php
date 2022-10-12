@@ -25,27 +25,27 @@ class QuestionManagement implements QuestionManagementInterface
     }
 
     /**
-     * @param int $id
+     * @param $item
      * @return void
      * @throws AlreadyExistsException
      * @throws NoSuchEntityException
      */
-    public function enableQuestion(int $id):void
+    public function enableQuestion($item):void
     {
-        $question = $this->questionRepository->getById($id);
+        $question = $this->questionRepository->getById($item->getId());
         $question->setStatus(QuestionInterface::ENABLED);
         $this->questionRepository->save($question);
     }
 
     /**
-     * @param int $id
+     * @param $item
      * @return void
      * @throws AlreadyExistsException
      * @throws NoSuchEntityException
      */
-    public function disableQuestion(int $id):void
+    public function disableQuestion($item):void
     {
-        $question = $this->questionRepository->getById($id);
+        $question = $this->questionRepository->getById($item->getId());
         $question->setStatus(QuestionInterface::DISABLED);
         $this->questionRepository->save($question);
     }

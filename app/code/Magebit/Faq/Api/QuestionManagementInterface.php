@@ -8,14 +8,14 @@ use Magebit\Faq\Api\Data\QuestionInterface;
 interface QuestionManagementInterface
 {
     /**
-     * @param int $id
+     * @param $item
      * @return void
      */
-    public function enableQuestion(int $id):void;
+    public function enableQuestion($item):void;
 
     /**
-     * @param int $id
+     * @param $item
      * @return void
      */
-    public function disableQuestion(int $id):void;
+    public function disableQuestion($item):void;
 }

@@ -57,10 +57,10 @@ class MassDisable extends \Magento\Backend\App\Action
         $collection = $this->filter->getCollection($this->collectionFactory->create());
         $collectionSize = $collection->getSize();
         foreach ($collection as $item) {
-            $this->questionManagement->disableQuestion((int)$item->getId());
+            $this->questionManagement->disableQuestion($item);
         }
 
-        $this->messageManager->addSuccess(__('A total of %1 record(s) have been enabled.', $collectionSize));
+        $this->messageManager->addSuccess(__('A total of %1 record(s) have been disabled.', $collectionSize));
 
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);

@@ -3,21 +3,20 @@
 use Magebit\Faq\Block\QuestionList;
 
 /** @var QuestionList $block */
+
+$faqArray = $block->getFaqList();
 ?>
 
 <div>
     <div id="accordion">
-    <?php
-    $faqArray = $block->getFaqList();
-
-    foreach ($faqArray as $qa) { ?>
+    <?php foreach ($faqArray as $qa): ?>
         <div data-role='collapsible' class='accordion-question'>
                 <div data-role='trigger'>
                     <span><?= $qa['question'];?></span>
                 </div>
             </div>
             <div data-role='content' class='accordion-answer'><?= $qa['answer'];?></div>
-    <?php } ?>
+    <?php endforeach; ?>
     </div>
 </div>
 

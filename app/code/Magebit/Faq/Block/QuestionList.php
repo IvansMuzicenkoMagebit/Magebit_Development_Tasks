@@ -10,6 +10,7 @@ use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magebit\Faq\Api\Data\QuestionInterface;
 
 class QuestionList extends Template
 {
@@ -46,8 +47,11 @@ class QuestionList extends Template
      */
     private function _getSearchCriteria():SearchCriteria
     {
-        $sortOrder = $this->sortOrder->setField("position")->setDirection("ASC");
-        return $this->_search->addFilter('status', '1')->setSortOrders([$sortOrder])->create();
+        $sortOrder = $this->sortOrder->setField(QuestionInterface::PFIELD)->setDirection("ASC");
+        return $this->_search
+            ->addFilter(QuestionInterface::SFIELD, QuestionInterface::ENABLED)
+            ->setSortOrders([$sortOrder])
+            ->create();
     }
 
     /**
