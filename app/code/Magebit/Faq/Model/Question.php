@@ -18,7 +18,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function getId()
     {
-        return $this->_getData("id");
+        return $this->_getData(self::IDFIELDNAME);
     }
 
     /**
@@ -26,7 +26,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function getQuestion(): string
     {
-        return $this->_getData("question");
+        return $this->_getData(self::QFIELD);
     }
 
     /**
@@ -35,7 +35,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function setQuestion(string $question): void
     {
-        $this->setData("question", $question);
+        $this->setData(self::QFIELD, $question);
     }
 
     /**
@@ -43,7 +43,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function getAnswer(): string
     {
-        return $this->_getData("answer");
+        return $this->_getData(self::AFIELD);
     }
 
     /**
@@ -52,7 +52,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function setAnswer(string $answer): void
     {
-        $this->setData("answer", $answer);
+        $this->setData(self::AFIELD, $answer);
     }
 
     /**
@@ -60,7 +60,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function getStatus(): int
     {
-        return $this->_getData("status");
+        return $this->_getData(self::SFIELD);
     }
 
     /**
@@ -69,7 +69,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function setStatus(int $status): void
     {
-        $this->setData("status", $status);
+        $this->setData(self::SFIELD, $status);
     }
 
     /**
@@ -77,7 +77,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function getPosition(): int
     {
-        return $this->_getData("position");
+        return $this->_getData(self::PFIELD);
     }
 
     /**
@@ -86,7 +86,7 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function setPosition(int $position): void
     {
-        $this->setData("position", $position);
+        $this->setData(self::PFIELD, $position);
     }
 
     /**
@@ -94,6 +94,6 @@ class Question extends AbstractModel implements QuestionInterface
      */
     public function getUpdatedAt(): string
     {
-        return $this->_getData("updatedat");
+        return $this->_getData(self::UPDFIELD);
     }
 }

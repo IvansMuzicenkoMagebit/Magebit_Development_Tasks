@@ -11,6 +11,5 @@
         <column name="status" xsi:type="smallint" nullable="false" default="0"/>
         <column name="position" xsi:type="int" nullable="false" default="0"/>
         <column name="updated_at" xsi:type="timestamp" nullable="false" default="CURRENT_TIMESTAMP" on_update="true"/>
-
     </table>
 </schema>

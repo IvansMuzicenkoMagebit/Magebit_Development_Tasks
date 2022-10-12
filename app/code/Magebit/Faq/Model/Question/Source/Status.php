@@ -15,16 +15,9 @@ class Status implements OptionSourceInterface
      */
     public function toOptionArray(): array
     {
-        $options = [];
-        $availableOptions = [self::STATUS_ENABLED => __('Enabled'), self::STATUS_DISABLED => __('Disabled')];
-
-        foreach ($availableOptions as $key => $value) {
-            $options[] = [
-                'label' => $value,
-                'value' => $key,
-            ];
-        }
-
-        return $options;
+        return [
+            ["label" => __('Enabled'), "value" => self::STATUS_ENABLED],
+            ["label" => __('Disabled'), "value" => self::STATUS_DISABLED]
+        ];
     }
 }

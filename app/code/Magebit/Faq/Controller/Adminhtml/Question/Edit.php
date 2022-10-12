@@ -3,38 +3,58 @@ declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Framework\Locale\Resolver;
+use Magebit\Faq\Controller\Adminhtml\AbstractQuestionActions;
+use Magebit\Faq\Model\Question;
+use Magebit\Faq\Model\QuestionFactory;
+use Magento\Backend\App\Action\Context;
+use Magento\Backend\Model\View\Result\Page;
+use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
 
-class Edit extends \Magebit\Faq\Controller\Index\AbstractQuestionActions
+class Edit extends AbstractQuestionActions
 {
+
     /**
-     * @return void
+     * @var PageFactory
      */
+    protected $resultPageFactory;
+
+    /**
+     * @param Context $context
+     * @param Registry $coreRegistry
+     * @param QuestionFactory $questionFactory
+     * @param PageFactory $resultPageFactory
+     */
+    public function __construct(
+        Context $context,
+        Registry $coreRegistry,
+        QuestionFactory $questionFactory,
+        PageFactory $resultPageFactory
+    )
+    {
+        parent::__construct($context, $coreRegistry, $questionFactory);
+        $this->resultPageFactory = $resultPageFactory;
+    }
+
     public function execute()
     {
         $questionId = $this->getRequest()->getParam('id');
-        /** @var \Magebit\Faq\Model\Question $model */
+        /** @var Question $model */
         $model = $this->_questionFactory->create();
 
         if ($questionId) {
             $model->load($questionId);
             if (!$model->getId()) {
                 $this->messageManager->addError(__('This question no longer exists.'));
-                $this->_redirect('*/*/index');
-                return;
+                return $this->_redirect('*/*/index');
             }
-        } else {
-            $model->setInterfaceLocale(Resolver::DEFAULT_LOCALE);
         }
-
 
         $this->_coreRegistry->register('question', $model);
 
-        $this->_initAction();
-        $this->_setActiveMenu('Magebit_Faq::faq');
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(__('Question'));
-        $this->_view->getPage()->getConfig()->getTitle()->prepend("FAQ Question");
-        $this->_view->renderLayout();
+        /** @var Page $resultPage */
+        $resultPage = $this->resultPageFactory->create();
+        $this->_initAction($resultPage);
+        return $resultPage;
     }
 }

@@ -3,23 +3,39 @@ declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magebit\Faq\Model\QuestionFactory;
-use Magento\Backend\App\Action;
+use Magebit\Faq\Model\QuestionRepository;
+use Magento\Backend\App\AbstractAction;
 use Magento\Backend\App\Action\Context;
+use Magento\Framework\Exception\NoSuchEntityException;
 
-
-class Delete extends \Magebit\Faq\Controller\Index\AbstractQuestionActions
+class Delete extends AbstractAction
 {
+    /**
+     * @var QuestionRepository
+     */
+    protected QuestionRepository $questionRepository;
+
+    /**
+     * @param Context $context
+     * @param QuestionRepository $questionRepository
+     */
+    public function __construct(
+        Context $context,
+        QuestionRepository $questionRepository
+    ) {
+        parent::__construct($context);
+        $this->questionRepository = $questionRepository;
+    }
+
+    /**
+     * @throws NoSuchEntityException
+     */
     public function execute()
     {
-        $questionId = $this->getRequest()->getParam('id');
-        /** @var \Magebit\Faq\Model\Question $model */
-        $model = $this->_questionFactory->create();
+        $questionId = (int)$this->getRequest()->getParam('id');
 
-        if ($questionId) {
-            $model->load($questionId);
-            $model->delete();
-        }
+        $this->questionRepository->deleteById($questionId);
+
         return $this->resultRedirectFactory->create()->setPath("faq/question/index");
     }
 }

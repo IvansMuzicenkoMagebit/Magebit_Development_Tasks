@@ -6,9 +6,15 @@ namespace Magebit\Faq\Controller\Adminhtml\Question;
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
+use Magento\Backend\Model\View\Result\Page;
 
 class Index extends Action
 {
+    /**
+     * @var PageFactory
+     */
+    protected $resultPageFactory;
+
     /**
      * @param Context $context
      * @param PageFactory $resultPageFactory
@@ -22,10 +28,11 @@ class Index extends Action
     }
     public function execute()
     {
-        $this->_view->loadLayout();
+        /** @var Page $resultPage */
+        $resultPage = $this->resultPageFactory->create();
         $this->_setActiveMenu('Magebit_Faq::faq');
-        $this->_view->getPage()->getConfig()->getTitle()->prepend(__('FAQ'));
-        $this->_view->getPage()->getConfig()->getTitle()->prepend("Frequently Asked Questions");
-        $this->_view->renderLayout();
+        $resultPage->getConfig()->getTitle()->prepend(__('FAQ'));
+        $resultPage->getConfig()->getTitle()->prepend("Frequently Asked Questions");
+        return $resultPage;
     }
 }

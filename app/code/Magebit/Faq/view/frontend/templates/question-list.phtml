@@ -10,15 +10,14 @@ use Magebit\Faq\Block\QuestionList;
     <?php
     $faqArray = $block->getFaqList();
 
-    foreach ($faqArray as $qa) {
-        echo "<div data-role='collapsible' class='accordion-question'>
+    foreach ($faqArray as $qa) { ?>
+        <div data-role='collapsible' class='accordion-question'>
                 <div data-role='trigger'>
-                    <span>" . $qa['question'] . "</span>
+                    <span><?= $qa['question'];?></span>
                 </div>
             </div>
-            <div data-role='content' class='accordion-answer'>" . $qa['answer'] . "</div>";
-    }
-    ?>
+            <div data-role='content' class='accordion-answer'><?= $qa['answer'];?></div>
+    <?php } ?>
     </div>
 </div>
 

@@ -1,31 +1,22 @@
 <?php
 declare(strict_types = 1);
 
-namespace Magebit\Faq\Controller\Index;
+namespace Magebit\Faq\Controller\Adminhtml;
 
 use Magebit\Faq\Model\QuestionFactory;
 use Magento\Backend\App\AbstractAction;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\Registry;
+use Magento\Framework\View\Result\PageFactory;
 
 abstract class AbstractQuestionActions extends AbstractAction
 {
     /**
-     * Authorization level of a basic admin session
-     *
-     * @see _isAllowed()
-     */
-    const ADMIN_RESOURCE = 'Magento_User::acl_users';
-
-    /**
-     * Core registry
-     *
      * @var Registry
      */
     protected $_coreRegistry;
 
     /**
-     *
      * @var QuestionFactory
      */
     protected $_questionFactory;
@@ -45,12 +36,11 @@ abstract class AbstractQuestionActions extends AbstractAction
         $this->_questionFactory = $questionFactory;
     }
 
-    protected function _initAction()
+    protected function _initAction($resultPage)
     {
-        $this->_view->loadLayout();
-        $this->_setActiveMenu(
-            'Magento_Faq::faq'
-        );
-        return $this;
+        $resultPage->setActiveMenu('Magebit_Faq::faq');
+        $resultPage->getConfig()->getTitle()->prepend(__('Question'));
+        $resultPage->getConfig()->getTitle()->prepend("FAQ Question");
+        return $resultPage;
     }
 }

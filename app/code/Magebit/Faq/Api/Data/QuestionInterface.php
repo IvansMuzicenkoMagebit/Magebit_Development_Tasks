@@ -7,6 +7,15 @@ use Magento\Framework\Api\ExtensibleDataInterface;
 
 interface QuestionInterface extends ExtensibleDataInterface
 {
+    public const IDFIELDNAME = "id";
+    public const TABLENAME = "magebit_faq";
+    public const QFIELD = "question";
+    public const AFIELD = "answer";
+    public const PFIELD = "position";
+    public const SFIELD = "status";
+    public const UPDFIELD = "updated_at";
+    public const ENABLED = 1;
+    public const DISABLED = 0;
     /**
      * @return int
      */

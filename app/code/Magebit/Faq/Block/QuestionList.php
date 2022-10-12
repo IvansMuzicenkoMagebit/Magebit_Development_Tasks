@@ -3,11 +3,13 @@ declare(strict_types = 1);
 
 namespace Magebit\Faq\Block;
 
+use Magebit\Faq\Api\QuestionRepositoryInterface;
 use Magento\Framework\Api\SearchCriteria;
+use Magento\Framework\Api\SearchCriteriaBuilder;
+use Magento\Framework\Api\SortOrder;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Framework\View\Element\Template;
-use Magebit\Faq\Api\QuestionRepositoryInterface;
-use Magento\Framework\Api\SortOrder;
+use Magento\Framework\View\Element\Template\Context;
 
 class QuestionList extends Template
 {
@@ -17,15 +19,15 @@ class QuestionList extends Template
     protected SortOrder $sortOrder;
 
     /**
-     * @param Template\Context $context
+     * @param Context $context
      * @param QuestionRepositoryInterface $questionRepository
-     * @param \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder
+     * @param SearchCriteriaBuilder $searchCriteriaBuilder
      * @param array $data
      */
     public function __construct(
-        \Magento\Framework\View\Element\Template\Context $context,
+        Context $context,
         QuestionRepositoryInterface $questionRepository,
-        \Magento\Framework\Api\SearchCriteriaBuilder $searchCriteriaBuilder,
+        SearchCriteriaBuilder $searchCriteriaBuilder,
         SortOrder $sortOrder,
         array $data = []
     ) {
@@ -37,18 +39,16 @@ class QuestionList extends Template
     protected function _construct()
     {
         parent::_construct();
-        $this->setTemplate('question-list.phtml');
     }
 
     /**
-     * @return \Magento\Framework\Api\SearchCriteria
+     * @return SearchCriteria
      */
     private function _getSearchCriteria():SearchCriteria
     {
         $sortOrder = $this->sortOrder->setField("position")->setDirection("ASC");
         return $this->_search->addFilter('status', '1')->setSortOrders([$sortOrder])->create();
     }
-
 
     /**
      * Get all pages array function
@@ -57,13 +57,6 @@ class QuestionList extends Template
      */
     public function getFaqList():array
     {
-        $list = [];
-        foreach ($this->_faqList->getList($this->_getSearchCriteria())->getItems() as $item) {
-            $list[] = $item;
-        }
-        return $list;
+        return $this->_faqList->getList($this->_getSearchCriteria())->getItems();
     }
-
-
 }
-

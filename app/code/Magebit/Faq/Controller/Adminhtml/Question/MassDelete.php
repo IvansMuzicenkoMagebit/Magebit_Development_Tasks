@@ -3,11 +3,13 @@ declare(strict_types = 1);
 
 namespace Magebit\Faq\Controller\Adminhtml\Question;
 
-use Magento\Framework\Controller\ResultFactory;
-use Magento\Backend\App\Action\Context;
-use Magento\Ui\Component\MassAction\Filter;
-use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
 use Magebit\Faq\Model\QuestionRepository;
+use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\Controller\ResultFactory;
+use Magento\Ui\Component\MassAction\Filter;
+use Magento\Backend\Model\View\Result\Redirect;
+use Magento\Framework\Exception\LocalizedException;
 
 class MassDelete extends \Magento\Backend\App\Action
 {
@@ -26,14 +28,18 @@ class MassDelete extends \Magento\Backend\App\Action
      */
     protected $questionRepository;
 
-
     /**
      * @param Context $context
      * @param Filter $filter
      * @param CollectionFactory $collectionFactory
      * @param QuestionRepository $questionRepository
      */
-    public function __construct(Context $context, Filter $filter, CollectionFactory $collectionFactory, QuestionRepository $questionRepository)
+    public function __construct(
+        Context $context,
+        Filter $filter,
+        CollectionFactory $collectionFactory,
+        QuestionRepository $questionRepository
+    )
     {
         parent::__construct($context);
         $this->filter = $filter;
@@ -43,8 +49,8 @@ class MassDelete extends \Magento\Backend\App\Action
     /**
      * Execute action
      *
-     * @return \Magento\Backend\Model\View\Result\Redirect
-     * @throws \Magento\Framework\Exception\LocalizedException|\Exception
+     * @return Redirect
+     * @throws LocalizedException
      */
     public function execute()
     {
@@ -56,7 +62,7 @@ class MassDelete extends \Magento\Backend\App\Action
 
         $this->messageManager->addSuccess(__('A total of %1 record(s) have been deleted.', $collectionSize));
 
-        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var Redirect $resultRedirect */
         $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
         return $resultRedirect->setPath('*/*/');
     }

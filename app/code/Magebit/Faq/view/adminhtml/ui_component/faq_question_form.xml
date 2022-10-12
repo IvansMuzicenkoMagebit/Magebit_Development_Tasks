@@ -10,14 +10,6 @@
             <item name="namespace" xsi:type="string">faq_question_form</item>
         </item>
         <item name="template" xsi:type="string">templates/form/collapsible</item>
-<!--        <item name="buttons" xsi:type="array">-->
-<!--            <item name="save" xsi:type="array">-->
-<!--                <item name="name" xsi:type="string">save</item>-->
-<!--                <item name="label" xsi:type="string" translate="true">Save</item>-->
-<!--                <item name="class" xsi:type="string">primary</item>-->
-<!--                <item name="url" xsi:type="string">*/*/save</item>-->
-<!--            </item>-->
-<!--        </item>-->
     </argument>
     <settings>
         <buttons>
@@ -48,21 +40,6 @@
         <settings>
             <label/>
         </settings>
-<!--       This field breaks new item creation-->
-
-<!--        <field name="id" formElement="input">-->
-<!--            <argument name="data" xsi:type="array">-->
-<!--                <item name="config" xsi:type="array">-->
-<!--                    <item name="source" xsi:type="string">id</item>-->
-<!--                </item>-->
-<!--            </argument>-->
-<!--            <settings>-->
-<!--                <dataType>text</dataType>-->
-<!--                <visible>false</visible>-->
-<!--                <dataScope>id</dataScope>-->
-<!--            </settings>-->
-<!--        </field>-->
-
         <field name="status" sortOrder="10" formElement="checkbox">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
@@ -87,33 +64,35 @@
                 </checkbox>
             </formElements>
         </field>
-        <field name="question">
+        <field name="question" formElement="input">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Question</item>
                     <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">input</item>
                     <item name="source" xsi:type="string">question</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label>Question</label>
+            </settings>
         </field>
-        <field name="answer">
+        <field name="answer" formElement="textarea">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
-                    <item name="label" xsi:type="string">Answer</item>
                     <item name="visible" xsi:type="boolean">true</item>
-                    <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">textarea</item>
                     <item name="source" xsi:type="string">answer</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label>Answer</label>
+            </settings>
         </field>
     </fieldset>
 </form>

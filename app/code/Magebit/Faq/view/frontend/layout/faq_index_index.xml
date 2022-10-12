@@ -4,7 +4,7 @@
         <referenceContainer name="content">
             <block
                 class="Magebit\Faq\Block\QuestionList"
-                name="Magebit_Faq"
+                name="question_list"
                 template="question-list.phtml"
             />
         </referenceContainer>

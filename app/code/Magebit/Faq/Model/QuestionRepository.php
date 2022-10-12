@@ -8,8 +8,9 @@ use Magebit\Faq\Api\Data\QuestionSearchResultsInterface;
 use Magebit\Faq\Api\Data\QuestionSearchResultsInterfaceFactory;
 use Magebit\Faq\Api\QuestionRepositoryInterface;
 use Magebit\Faq\Model\ResourceModel\Question\CollectionFactory;
+use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
-use Magento\Framework\Api\SortOrder;
+use Magento\Framework\App\ObjectManager;
 use Magento\Framework\Exception\AlreadyExistsException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
@@ -26,6 +27,16 @@ class QuestionRepository implements QuestionRepositoryInterface
     private CollectionFactory $collectionFactory;
 
     /**
+     * @var CollectionProcessorInterface
+     */
+    private $collectionProcessor;
+
+    /**
+     * @var QuestionSearchResultsInterfaceFactory
+     */
+    protected $searchResultsFactory;
+
+    /**
      * @var QuestionSearchResultsInterfaceFactory
      */
     private QuestionSearchResultsInterfaceFactory $searchResultFactory;
@@ -33,15 +44,21 @@ class QuestionRepository implements QuestionRepositoryInterface
     /**
      * @param QuestionFactory $questionFactory
      * @param CollectionFactory $collectionFactory
+     * @param CollectionProcessorInterface $collectionProcessor
+     * @param QuestionSearchResultsInterfaceFactory $searchResultsFactory
      * @param QuestionSearchResultsInterfaceFactory $questionSearchResultsInterfaceFactory
      */
     public function __construct(
         QuestionFactory $questionFactory,
         CollectionFactory $collectionFactory,
+        CollectionProcessorInterface $collectionProcessor = null,
+        QuestionSearchResultsInterfaceFactory $searchResultsFactory,
         QuestionSearchResultsInterfaceFactory $questionSearchResultsInterfaceFactory
     ) {
         $this->questionFactory = $questionFactory;
         $this->collectionFactory = $collectionFactory;
+        $this->collectionProcessor = $collectionProcessor;
+        $this->searchResultsFactory = $searchResultsFactory;
         $this->searchResultFactory = $questionSearchResultsInterfaceFactory;
     }
 
@@ -107,77 +124,21 @@ class QuestionRepository implements QuestionRepositoryInterface
         $question->getResource()->delete($question);
     }
 
-    /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @param $collection
-     * @return void
-     */
-    private function addFiltersToCollection(SearchCriteriaInterface $searchCriteria, $collection): void
-    {
-        foreach ($searchCriteria->getFilterGroups() as $filterGroup) {
-            $fields = $conditions = [];
-            foreach ($filterGroup->getFilters() as $filter) {
-                $fields[] = $filter->getField();
-                $conditions[] = [$filter->getConditionType() => $filter->getValue()];
-            }
-            $collection->addFieldToFilter($fields, $conditions);
-        }
-    }
 
     /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @param $collection
-     * @return void
-     */
-    private function addSortOrdersToCollection(SearchCriteriaInterface $searchCriteria, $collection): void
-    {
-        foreach ((array) $searchCriteria->getSortOrders() as $sortOrder) {
-            $direction = $sortOrder->getDirection() == SortOrder::SORT_ASC ? 'asc' : 'desc';
-            $collection->addOrder($sortOrder->getField(), $direction);
-        }
-    }
-
-    /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @param $collection
-     * @return void
-     */
-    private function addPagingToCollection(SearchCriteriaInterface $searchCriteria, $collection): void
-    {
-        $collection->setPageSize($searchCriteria->getPageSize());
-        $collection->setCurPage($searchCriteria->getCurrentPage());
-    }
-
-    /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @param $collection
+     * @param SearchCriteriaInterface $criteria
      * @return QuestionSearchResultsInterface
      */
-    private function buildSearchResult(SearchCriteriaInterface $searchCriteria, $collection)
-    {
-        $searchResults = $this->searchResultFactory->create();
-
-        $searchResults->setSearchCriteria($searchCriteria);
-        $searchResults->setItems($collection->getItems());
-        $searchResults->setTotalCount($collection->getSize());
-
-        return $searchResults;
-    }
-
-    /**
-     * @param SearchCriteriaInterface $searchCriteria
-     * @return QuestionSearchResultsInterface
-     */
-    public function getList(SearchCriteriaInterface $searchCriteria)
+    public function getList(SearchCriteriaInterface $criteria)
     {
         $collection = $this->collectionFactory->create();
 
-        $this->addFiltersToCollection($searchCriteria, $collection);
-        $this->addSortOrdersToCollection($searchCriteria, $collection);
-        $this->addPagingToCollection($searchCriteria, $collection);
+        $this->collectionProcessor->process($criteria, $collection);
 
-        $collection->load();
-
-        return $this->buildSearchResult($searchCriteria, $collection);
+        $searchResults = $this->searchResultsFactory->create();
+        $searchResults->setSearchCriteria($criteria);
+        $searchResults->setItems($collection->getItems());
+        $searchResults->setTotalCount($collection->getSize());
+        return $searchResults;
     }
 }

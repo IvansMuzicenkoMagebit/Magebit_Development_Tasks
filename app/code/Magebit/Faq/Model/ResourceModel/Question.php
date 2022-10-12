@@ -4,10 +4,11 @@ declare(strict_types = 1);
 namespace Magebit\Faq\Model\ResourceModel;
 
 use Magento\Framework\Model\ResourceModel\Db\AbstractDb;
+use Magebit\Faq\Api\Data\QuestionInterface;
 
 class Question extends AbstractDb
 {
-    protected $_idFieldName = "id";
+    protected $_idFieldName = QuestionInterface::IDFIELDNAME;
 
     /**
      * @param \Magento\Framework\Model\ResourceModel\Db\Context $context
@@ -20,6 +21,6 @@ class Question extends AbstractDb
 
     protected function _construct()
     {
-        $this->_init("magebit_faq", "id");
+        $this->_init(QuestionInterface::TABLENAME, QuestionInterface::IDFIELDNAME);
     }
 }
