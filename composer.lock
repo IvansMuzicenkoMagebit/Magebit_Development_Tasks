@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "19d57d808ce1a5956901ec12ac421177",
+    "content-hash": "c41d28c98ccac40bbfd96fc7a70ec5eb",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -2097,6 +2097,472 @@
                 }
             ],
             "time": "2022-08-28T14:45:39+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-cms-tailwind-jit",
+            "version": "1.0.24",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-cms-tailwind-jit/1.0.24.0/01c77cdec6849a8deb94d3e17d1bbf4aab17fed8.zip",
+                "reference": "01c77cdec6849a8deb94d3e17d1bbf4aab17fed8",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.4.0||>=8.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\CmsTailwindJit\\": "src/"
+                }
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "proprietary"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes B.V.",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Automatic TailwindCSS classes for CMS content in Hyvä Themes.",
+            "support": {
+                "source": "https://gitlab.hyva.io/hyva-themes/magento2-cms-tailwind-jit/-/tree/1.0.24",
+                "issues": "https://gitlab.hyva.io/hyva-themes/magento2-cms-tailwind-jit/-/issues"
+            },
+            "time": "2022-05-19T15:35:04+02:00"
+        },
+        {
+            "name": "hyva-themes/magento2-default-theme",
+            "version": "1.1.17",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-default-theme/1.1.17.0/646a1474e0b57c6f12995846e7112258f9cd7d2b.zip",
+                "reference": "646a1474e0b57c6f12995846e7112258f9cd7d2b",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "hyva-themes/magento2-email-module": "*",
+                "hyva-themes/magento2-graphql-tokens": "*",
+                "hyva-themes/magento2-graphql-view-model": ">=1.0.1",
+                "hyva-themes/magento2-reset-theme": "*",
+                "hyva-themes/magento2-theme-module": ">=1.1.17",
+                "magento/framework": ">=102.0.0",
+                "magento/module-catalog-rule-graph-ql": "*",
+                "magento/module-customer-graph-ql": "*",
+                "magento/module-directory-graph-ql": "*",
+                "magento/module-graph-ql": "*",
+                "magento/module-quote-graph-ql": "*",
+                "php": ">=7.3.0"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "dev-master",
+                "magento/magento-coding-standard": "dev-master",
+                "phpro/grumphp": "dev-master"
+            },
+            "suggest": {
+                "hyva-themes/magento2-review-graphql": "*"
+            },
+            "type": "magento2-theme",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "See LICENSE.md or https://hyva.io/license"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes B.V.",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Default Hyvä Theme",
+            "support": {
+                "source": "https://gitlab.hyva.io/hyva-themes/magento2-default-theme/-/tree/1.1.17",
+                "issues": "https://gitlab.hyva.io/hyva-themes/magento2-default-theme/-/issues"
+            },
+            "time": "2022-08-16T22:18:50+02:00"
+        },
+        {
+            "name": "hyva-themes/magento2-email-module",
+            "version": "1.0.5",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-email-module/1.0.5.0/16789f753dc136a929440b6bbb4ba50b95d8cd3c.zip",
+                "reference": "16789f753dc136a929440b6bbb4ba50b95d8cd3c",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "magento/framework": "*",
+                "magento/module-email": ">=101.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\Email\\": "src/"
+                }
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "see LICENSE.md"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes, Wigman Interactive",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Hyva Themes email module",
+            "support": {
+                "issues": "https://gitlab.hyva.io/api/v4/projects/4/issues"
+            },
+            "time": "2021-11-16T15:31:55+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-graphql-tokens",
+            "version": "1.0.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyva-themes/magento2-graphql-tokens.git",
+                "reference": "90134c74388b0f5635d322b70a79fcf97716900e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyva-themes/magento2-graphql-tokens/zipball/90134c74388b0f5635d322b70a79fcf97716900e",
+                "reference": "90134c74388b0f5635d322b70a79fcf97716900e",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "*",
+                "magento/module-catalog": ">=103.0.0",
+                "magento/module-checkout": ">=100.3.0",
+                "magento/module-customer": ">=102.0.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\GraphqlTokens\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes BV",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Adds Customer and Cart tokens to CustomerData sections",
+            "support": {
+                "issues": "https://github.com/hyva-themes/magento2-graphql-tokens/issues",
+                "source": "https://github.com/hyva-themes/magento2-graphql-tokens/tree/1.0.4"
+            },
+            "time": "2021-08-23T10:19:57+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-graphql-view-model",
+            "version": "1.0.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyva-themes/magento2-graphql-view-model.git",
+                "reference": "0590c9bd047ade06ca60f476f9d3b21055d00b03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyva-themes/magento2-graphql-view-model/zipball/0590c9bd047ade06ca60f476f9d3b21055d00b03",
+                "reference": "0590c9bd047ade06ca60f476f9d3b21055d00b03",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\GraphqlViewModel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "Provide ability to customize GraphQL queries and mutations for Hyvä themes.",
+            "support": {
+                "issues": "https://github.com/hyva-themes/magento2-graphql-view-model/issues",
+                "source": "https://github.com/hyva-themes/magento2-graphql-view-model/tree/1.0.3"
+            },
+            "time": "2022-03-01T14:26:17+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-hyva-checkout",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hyva-themes/magento2-react-checkout.git",
+                "reference": "088f46d8b6057a8a1b465f84e619c2090a0d6571"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hyva-themes/magento2-react-checkout/zipball/088f46d8b6057a8a1b465f84e619c2090a0d6571",
+                "reference": "088f46d8b6057a8a1b465f84e619c2090a0d6571",
+                "shasum": ""
+            },
+            "require": {
+                "hyva-themes/magento2-graphql-tokens": "^1.0",
+                "magento/framework": "*",
+                "magento/module-catalog": ">=103.0.0",
+                "magento/module-checkout": ">=100.3.0",
+                "magento/module-customer": ">=102.0.0"
+            },
+            "suggest": {
+                "hyva-themes/magento2-graphql-tokens": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\ReactCheckout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes BV",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Highly customizable Magento 2 Checkout, built with React",
+            "support": {
+                "issues": "https://github.com/hyva-themes/magento2-react-checkout/issues",
+                "source": "https://github.com/hyva-themes/magento2-react-checkout/tree/1.1.2"
+            },
+            "abandoned": "hyva-themes/magento2-react-checkout",
+            "time": "2022-09-21T03:34:00+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-luma-checkout",
+            "version": "1.1.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-luma-checkout/1.1.2.0/928259876d02090e601351e89af07b39bf8924e7.zip",
+                "reference": "928259876d02090e601351e89af07b39bf8924e7",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "hyva-themes/magento2-theme-fallback": "*",
+                "magento/framework": "*",
+                "magento/module-checkout": ">=100.3.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\LumaCheckout\\": "src/"
+                }
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "see LICENSE.md"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes B.V.",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Luma Fallback Checkout for Hyvä Themes",
+            "support": {
+                "source": "https://gitlab.hyva.io/hyva-themes/magento2-luma-checkout/-/tree/1.1.2",
+                "issues": "https://gitlab.hyva.io/hyva-themes/magento2-luma-checkout/-/issues"
+            },
+            "time": "2022-03-09T10:21:25+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-reset-theme",
+            "version": "1.1.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-reset-theme/1.1.2.0/1837632b075af5c0870ae1d7736b8c6df6664274.zip",
+                "reference": "1837632b075af5c0870ae1d7736b8c6df6664274",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "magento/framework": ">=102.0.0",
+                "php": ">=7.3.0"
+            },
+            "type": "magento2-theme",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "see LICENSE.md"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes B.V.",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "A theme that unsets all Magento 2 layout blocks. A real _blank_ theme.",
+            "support": {
+                "source": "https://gitlab.hyva.io/hyva-themes/magento2-reset-theme/-/tree/1.1.2",
+                "issues": "https://gitlab.hyva.io/hyva-themes/magento2-reset-theme/-/issues"
+            },
+            "time": "2022-04-21T18:52:39+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-theme-fallback",
+            "version": "1.0.1",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-theme-fallback/1.0.1.0/02fd4b9d28b8984e96faaa015ac2670eaf66c6b3.zip",
+                "reference": "02fd4b9d28b8984e96faaa015ac2670eaf66c6b3",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "magento/framework": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\ThemeFallback\\": "src/"
+                }
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "see LICENSE.md"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes B.V.",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Allow for Hyvä Themes to fall back to regular Magento themes on specific routes.",
+            "support": {
+                "issues": "https://gitlab.hyva.io/api/v4/projects/118/issues"
+            },
+            "time": "2021-06-23T13:43:17+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-theme-module",
+            "version": "1.1.17",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-theme-module/1.1.17.0/baf40f2b30d34c9f6bef97863001a884aef74011.zip",
+                "reference": "baf40f2b30d34c9f6bef97863001a884aef74011",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-simplexml": "*",
+                "magento/framework": "*",
+                "magento/module-catalog": ">=103.0.0",
+                "magento/module-checkout": ">=100.3.0",
+                "magento/module-cms": ">=103.0.0",
+                "magento/module-customer": ">=102.0.0",
+                "magento/module-theme": ">=101.0.0",
+                "magento/module-wishlist": ">=101.0.0"
+            },
+            "require-dev": {
+                "hyva-themes/magento2-default-theme": "*",
+                "hyva-themes/magento2-reset-theme": "*",
+                "tddwizard/magento2-fixtures": "^1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\Theme\\": [
+                        "src/",
+                        "tests/src/"
+                    ]
+                }
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "see LICENSE.md"
+            ],
+            "authors": [
+                {
+                    "name": "Hyvä Themes B.V.",
+                    "email": "info@hyva.io"
+                }
+            ],
+            "description": "Hyva Themes companion module",
+            "support": {
+                "source": "https://gitlab.hyva.io/hyva-themes/magento2-theme-module/-/tree/1.1.17",
+                "issues": "https://gitlab.hyva.io/hyva-themes/magento2-theme-module/-/issues"
+            },
+            "time": "2022-08-16T16:45:14+02:00"
         },
         {
             "name": "justinrainbow/json-schema",
@@ -17431,6 +17897,90 @@
             "time": "2022-07-24T11:55:47+00:00"
         },
         {
+            "name": "msp/common",
+            "version": "0.1.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magespecialist/m2-MSP_Common.git",
+                "reference": "c05b806a925e9cf56e91af3bb33e393d48f5b136"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magespecialist/m2-MSP_Common/zipball/c05b806a925e9cf56e91af3bb33e393d48f5b136",
+                "reference": "c05b806a925e9cf56e91af3bb33e393d48f5b136",
+                "shasum": ""
+            },
+            "require": {
+                "magento/magento-composer-installer": "*"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MSP\\Common\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "support": {
+                "issues": "https://github.com/magespecialist/m2-MSP_Common/issues",
+                "source": "https://github.com/magespecialist/m2-MSP_Common/tree/master"
+            },
+            "time": "2019-12-03T09:01:47+00:00"
+        },
+        {
+            "name": "msp/devtools",
+            "version": "1.2.16",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/magespecialist/m2-MSP_DevTools.git",
+                "reference": "32e0bcb379a10f1434a5a5178b6bc51c20d27916"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/magespecialist/m2-MSP_DevTools/zipball/32e0bcb379a10f1434a5a5178b6bc51c20d27916",
+                "reference": "32e0bcb379a10f1434a5a5178b6bc51c20d27916",
+                "shasum": ""
+            },
+            "require": {
+                "magento/magento-composer-installer": "*",
+                "msp/common": "*",
+                "php": "^7.4|^8.1"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "MSP\\DevTools\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "OSL-3.0"
+            ],
+            "authors": [
+                {
+                    "name": "Riccardo Tempesta",
+                    "email": "riccardo.tempesta@magespecialist.it"
+                },
+                {
+                    "name": "Lorenzo Stramaccia",
+                    "email": "lorenzo.stramaccia@magespecialist.it"
+                }
+            ],
+            "support": {
+                "issues": "https://github.com/magespecialist/m2-MSP_DevTools/issues",
+                "source": "https://github.com/magespecialist/m2-MSP_DevTools/tree/1.2.16"
+            },
+            "time": "2022-05-26T09:30:55+00:00"
+        },
+        {
             "name": "mtdowling/jmespath.php",
             "version": "2.6.1",
             "source": {
@@ -23353,6 +23903,57 @@
             "time": "2018-02-14T22:37:14+00:00"
         },
         {
+            "name": "mage2tv/magento-cache-clean",
+            "version": "1.0.48",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mage2tv/magento-cache-clean.git",
+                "reference": "bb1455a58ae32b80485b10e14c551582cac19034"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mage2tv/magento-cache-clean/zipball/bb1455a58ae32b80485b10e14c551582cac19034",
+                "reference": "bb1455a58ae32b80485b10e14c551582cac19034",
+                "shasum": ""
+            },
+            "suggest": {
+                "magento/project-community-edition": "*"
+            },
+            "bin": [
+                "bin/cache-clean.js"
+            ],
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Vinai Kopp",
+                    "email": "vinai@netzarbeiter.com",
+                    "role": "lead"
+                }
+            ],
+            "description": "A faster drop in replacement for bin/magento cache:clean with file watcher",
+            "homepage": "https://github.com/mage2tv/magento-cache-clean",
+            "keywords": [
+                "development",
+                "magento",
+                "utility"
+            ],
+            "support": {
+                "issues": "https://github.com/mage2tv/magento-cache-clean/issues",
+                "source": "https://github.com/mage2tv/magento-cache-clean/tree/1.0.48"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/vinai",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-09T10:00:08+00:00"
+        },
+        {
             "name": "magento/magento-coding-standard",
             "version": "25",
             "source": {
@@ -26200,5 +26801,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
