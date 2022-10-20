@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c41d28c98ccac40bbfd96fc7a70ec5eb",
+    "content-hash": "3c3a3c1d837d70b6fe338baed3338915",
     "packages": [
         {
             "name": "2tvenom/cborencode",
@@ -2377,6 +2377,55 @@
             },
             "abandoned": "hyva-themes/magento2-react-checkout",
             "time": "2022-09-21T03:34:00+00:00"
+        },
+        {
+            "name": "hyva-themes/magento2-hyva-widgets",
+            "version": "1.0.0",
+            "dist": {
+                "type": "zip",
+                "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/hyva-themes/magento2-hyva-widgets/1.0.0.0/abc7f8996593995745db911b0dc6c530e8298f74.zip",
+                "reference": "abc7f8996593995745db911b0dc6c530e8298f74",
+                "mirrors": [
+                    {
+                        "url": "https://hyva-themes.repo.packagist.com/capital-lv/dists/%package%/%version%/r%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "hyva-themes/magento2-default-theme": ">=1.1.10",
+                "magento/framework": ">=102.0.0",
+                "php": ">=7.4.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "src/registration.php"
+                ],
+                "psr-4": {
+                    "Hyva\\Widgets\\": "src/"
+                }
+            },
+            "notification-url": "https://hyva-themes.repo.packagist.com/capital-lv/downloads/",
+            "license": [
+                "See LICENSE.md or https://hyva.io/license"
+            ],
+            "authors": [
+                {
+                    "name": "Goran Horvat",
+                    "email": "goran@bemeir.com"
+                },
+                {
+                    "name": "Willem Wigman",
+                    "email": "willem@hyva.io"
+                }
+            ],
+            "description": "Hyvä Themes Magento 2 module that adds a simple widget CMS system",
+            "support": {
+                "source": "https://gitlab.hyva.io/hyva-themes/magento2-hyva-widgets/-/tree/1.0.0",
+                "issues": "https://gitlab.hyva.io/hyva-themes/magento2-hyva-widgets/-/issues"
+            },
+            "time": "2022-01-14T10:47:32+00:00"
         },
         {
             "name": "hyva-themes/magento2-luma-checkout",
